@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import SignOutButton from "@/components/auth/sign-out-button";
 import Link from "next/link";
 import { ROLE_NAMES } from "@/types/roles";
+import { Button } from "@/components/ui/button";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -112,25 +113,22 @@ export default async function DashboardPage() {
                 Быстрые действия
               </h3>
               <div className="mt-4 flex flex-wrap gap-3">
-                <Link
-                  href="/dashboard/teams/new"
-                  className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background transition-all hover:scale-105 hover:bg-zinc-800 dark:hover:bg-zinc-200"
-                >
-                  Создать команду
-                </Link>
-                <Link
-                  href="/dashboard/teams"
-                  className="rounded-lg border-2 border-foreground px-4 py-2 text-sm font-medium text-foreground transition-all hover:scale-105 hover:bg-foreground hover:text-background"
-                >
-                  Управление командами
-                </Link>
-                {role === "admin" && (
-                  <Link
-                    href="/dashboard/admin"
-                    className="rounded-lg border-2 border-foreground px-4 py-2 text-sm font-medium text-foreground transition-all hover:scale-105 hover:bg-foreground hover:text-background"
-                  >
-                    Панель администратора
+                <Button asChild>
+                  <Link href="/dashboard/teams/new">
+                    Создать команду
                   </Link>
+                </Button>
+                <Button variant="outline" asChild>
+                  <Link href="/dashboard/teams">
+                    Управление командами
+                  </Link>
+                </Button>
+                {role === "admin" && (
+                  <Button variant="outline" asChild>
+                    <Link href="/dashboard/admin">
+                      Панель администратора
+                    </Link>
+                  </Button>
                 )}
               </div>
             </div>

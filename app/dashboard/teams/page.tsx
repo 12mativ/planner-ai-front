@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import { getTeams, getTeamsByLeadId, getUserById } from "@/lib/auth";
 import Link from "next/link";
 import { ROLE_NAMES } from "@/types/roles";
+import { Button } from "@/components/ui/button";
 
 export default async function TeamsPage() {
   const session = await auth();
@@ -90,12 +91,11 @@ export default async function TeamsPage() {
               </p>
             </div>
             {canCreateTeams && (
-              <Link
-                href="/dashboard/teams/new"
-                className="rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:scale-105 hover:bg-zinc-800 dark:hover:bg-zinc-200"
-              >
-                Создать команду
-              </Link>
+              <Button asChild>
+                <Link href="/dashboard/teams/new">
+                  Создать команду
+                </Link>
+              </Button>
             )}
           </div>
 
@@ -114,12 +114,11 @@ export default async function TeamsPage() {
                   : "Вы пока не состоите ни в одной команде"}
               </p>
               {canCreateTeams && (
-                <Link
-                  href="/dashboard/teams/new"
-                  className="mt-4 inline-block rounded-lg bg-foreground px-6 py-2 text-sm font-medium text-background transition-all hover:scale-105"
-                >
-                  Создать команду
-                </Link>
+                <Button className="mt-4" asChild>
+                  <Link href="/dashboard/teams/new">
+                    Создать команду
+                  </Link>
+                </Button>
               )}
             </div>
           ) : (
@@ -173,19 +172,17 @@ export default async function TeamsPage() {
                     </div>
 
                     <div className="mt-4 flex gap-2">
-                      <Link
-                        href={`/dashboard/teams/${team.id}`}
-                        className="flex-1 rounded-lg border-2 border-foreground px-4 py-2 text-center text-sm font-medium text-foreground transition-all hover:bg-foreground hover:text-background"
-                      >
-                        Просмотр
-                      </Link>
-                      {canManage && (
-                        <Link
-                          href={`/dashboard/teams/${team.id}/manage`}
-                          className="flex-1 rounded-lg bg-foreground px-4 py-2 text-center text-sm font-medium text-background transition-all hover:scale-105"
-                        >
-                          Управление
+                      <Button variant="outline" className="flex-1" asChild>
+                        <Link href={`/dashboard/teams/${team.id}`}>
+                          Просмотр
                         </Link>
+                      </Button>
+                      {canManage && (
+                        <Button className="flex-1" asChild>
+                          <Link href={`/dashboard/teams/${team.id}/manage`}>
+                            Управление
+                          </Link>
+                        </Button>
                       )}
                     </div>
                   </div>

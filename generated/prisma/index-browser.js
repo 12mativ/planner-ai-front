@@ -146,6 +146,16 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  teamId: 'teamId',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -172,11 +182,20 @@ exports.Prisma.TeamMemberOrderByRelevanceFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.ProjectOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  teamId: 'teamId',
+  status: 'status'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
   Team: 'Team',
-  TeamMember: 'TeamMember'
+  TeamMember: 'TeamMember',
+  Project: 'Project'
 };
 
 /**

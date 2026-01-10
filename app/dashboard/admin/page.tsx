@@ -2,7 +2,8 @@ import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { getUsers, getTeams } from "@/lib/auth";
 import Link from "next/link";
-import { ROLE_NAMES } from "@/types/roles";
+import { ROLE_NAMES, UserRole } from "@/types/roles";
+import { Button } from "@/components/ui/button";
 
 export default async function AdminPage() {
   const session = await auth();
@@ -183,7 +184,7 @@ export default async function AdminPage() {
                       </td>
                       <td className="py-3">
                         <span className="inline-flex rounded-full bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
-                          {ROLE_NAMES[user.role]}
+                          {ROLE_NAMES[user.role as UserRole]}
                         </span>
                       </td>
                       <td className="py-3 text-sm text-zinc-600 dark:text-zinc-400">
@@ -202,12 +203,11 @@ export default async function AdminPage() {
               <h2 className="text-xl font-semibold text-foreground">
                 Все команды
               </h2>
-              <Link
-                href="/dashboard/teams"
-                className="text-sm font-medium text-zinc-600 hover:text-foreground dark:text-zinc-400"
-              >
-                Управление командами →
-              </Link>
+              <Button variant="link" asChild>
+                <Link href="/dashboard/teams">
+                  Управление командами →
+                </Link>
+              </Button>
             </div>
             {teams.length === 0 ? (
               <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
@@ -231,12 +231,11 @@ export default async function AdminPage() {
                       <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
                         Участников: {team.memberIds.length}
                       </p>
-                      <Link
-                        href={`/dashboard/teams/${team.id}/manage`}
-                        className="mt-3 inline-block text-sm font-medium text-foreground hover:underline"
-                      >
-                        Управление →
-                      </Link>
+                      <Button variant="link" className="mt-3 p-0 h-auto" asChild>
+                        <Link href={`/dashboard/teams/${team.id}/manage`}>
+                          Управление →
+                        </Link>
+                      </Button>
                     </div>
                   );
                 })}

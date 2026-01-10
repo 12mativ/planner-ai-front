@@ -5,6 +5,16 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { UserRole, ROLE_NAMES, ROLE_DESCRIPTIONS } from "@/types/roles";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "sonner";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -13,22 +23,20 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState<UserRole>("user");
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
 
     // Validate passwords match
     if (password !== confirmPassword) {
-      setError("Пароли не совпадают");
+      toast.error("Пароли не совпадают");
       return;
     }
 
     // Validate password length
     if (password.length < 6) {
-      setError("Пароль должен содержать минимум 6 символов");
+      toast.error("Пароль должен содержать минимум 6 символов");
       return;
     }
 
@@ -47,7 +55,7 @@ export default function RegisterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || "Ошибка при регистрации");
+        toast.error(data.error || "Ошибка при регистрации");
         return;
       }
 
@@ -58,15 +66,16 @@ export default function RegisterPage() {
       });
 
       if (signInResult?.error) {
-        setError("Регистрация успешна, но не удалось войти автоматически");
+        toast.error("Регистрация успешна, но не удалось войти автоматически");
         router.push("/login");
       } else {
+        toast.success("Регистрация успешна! Добро пожаловать!");
         router.push("/dashboard");
         router.refresh();
       }
     } catch (error) {
       console.error("Registration error:", error);
-      setError("Произошла ошибка при регистрации");
+      toast.error("Произошла ошибка при регистрации");
     } finally {
       setIsLoading(false);
     }
@@ -87,12 +96,6 @@ export default function RegisterPage() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-          {error && (
-            <div className="rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900/20 dark:text-red-400">
-              {error}
-            </div>
-          )}
-
           <div className="space-y-4">
             <div>
               <label
@@ -101,7 +104,7 @@ export default function RegisterPage() {
               >
                 Имя
               </label>
-              <input
+              <Input
                 id="name"
                 name="name"
                 type="text"
@@ -109,8 +112,8 @@ export default function RegisterPage() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-foreground placeholder-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder-zinc-500"
                 placeholder="Ваше имя"
+                className="mt-1"
               />
             </div>
 
@@ -121,7 +124,7 @@ export default function RegisterPage() {
               >
                 Email
               </label>
-              <input
+              <Input
                 id="email"
                 name="email"
                 type="email"
@@ -129,8 +132,8 @@ export default function RegisterPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-foreground placeholder-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder-zinc-500"
                 placeholder="your@email.com"
+                className="mt-1"
               />
             </div>
 
@@ -141,17 +144,16 @@ export default function RegisterPage() {
               >
                 Роль
               </label>
-              <select
-                id="role"
-                name="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value as UserRole)}
-                className="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-foreground focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-900"
-              >
-                <option value="user">{ROLE_NAMES.user}</option>
-                <option value="team_lead">{ROLE_NAMES.team_lead}</option>
-                <option value="admin">{ROLE_NAMES.admin}</option>
-              </select>
+              <Select value={role} onValueChange={(value) => setRole(value as UserRole)}>
+                <SelectTrigger className="mt-1">
+                  <SelectValue placeholder="Выберите роль" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="user">{ROLE_NAMES.user}</SelectItem>
+                  <SelectItem value="team_lead">{ROLE_NAMES.team_lead}</SelectItem>
+                  <SelectItem value="admin">{ROLE_NAMES.admin}</SelectItem>
+                </SelectContent>
+              </Select>
               <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
                 {ROLE_DESCRIPTIONS[role]}
               </p>
@@ -164,7 +166,7 @@ export default function RegisterPage() {
               >
                 Пароль
               </label>
-              <input
+              <Input
                 id="password"
                 name="password"
                 type="password"
@@ -172,8 +174,8 @@ export default function RegisterPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-foreground placeholder-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder-zinc-500"
                 placeholder="Минимум 6 символов"
+                className="mt-1"
               />
             </div>
 
@@ -184,7 +186,7 @@ export default function RegisterPage() {
               >
                 Подтвердите пароль
               </label>
-              <input
+              <Input
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
@@ -192,39 +194,38 @@ export default function RegisterPage() {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="mt-1 block w-full rounded-lg border border-zinc-300 bg-white px-4 py-3 text-foreground placeholder-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder-zinc-500"
                 placeholder="Повторите пароль"
+                className="mt-1"
               />
             </div>
           </div>
 
-          <button
+          <Button
             type="submit"
             disabled={isLoading}
-            className="flex w-full items-center justify-center rounded-lg bg-foreground px-4 py-3 text-base font-medium text-background transition-all hover:scale-[1.02] hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-zinc-200"
+            className="w-full"
+            size="lg"
           >
             {isLoading ? "Регистрация..." : "Зарегистрироваться"}
-          </button>
+          </Button>
 
           <div className="text-center text-sm">
             <span className="text-zinc-600 dark:text-zinc-400">
               Уже есть аккаунт?{" "}
             </span>
-            <Link
-              href="/login"
-              className="font-medium text-foreground underline decoration-zinc-400 underline-offset-4 hover:text-zinc-700 dark:hover:text-zinc-300"
-            >
-              Войти
-            </Link>
+            <Button variant="link" className="p-0 h-auto" asChild>
+              <Link href="/login">
+                Войти
+              </Link>
+            </Button>
           </div>
 
           <div className="text-center">
-            <Link
-              href="/"
-              className="text-sm font-medium text-zinc-600 underline decoration-zinc-400 underline-offset-4 hover:text-foreground dark:text-zinc-400"
-            >
-              ← Вернуться на главную
-            </Link>
+            <Button variant="link" className="text-zinc-600 dark:text-zinc-400" asChild>
+              <Link href="/">
+                ← Вернуться на главную
+              </Link>
+            </Button>
           </div>
         </form>
       </div>

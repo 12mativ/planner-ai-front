@@ -119,6 +119,16 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  teamId: 'teamId',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -145,11 +155,20 @@ exports.Prisma.TeamMemberOrderByRelevanceFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.ProjectOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  teamId: 'teamId',
+  status: 'status'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
   Team: 'Team',
-  TeamMember: 'TeamMember'
+  TeamMember: 'TeamMember',
+  Project: 'Project'
 };
 /**
  * Create the Client
@@ -159,10 +178,10 @@ const config = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "mysql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  password  String\n  name      String\n  role      String   @default(\"user\") // \"admin\", \"team_lead\", \"user\"\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relations\n  ledTeams    Team[]       @relation(\"TeamLead\")\n  memberships TeamMember[]\n}\n\nmodel Team {\n  id          String   @id @default(cuid())\n  name        String\n  description String   @default(\"\")\n  leadId      String\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relations\n  lead    User         @relation(\"TeamLead\", fields: [leadId], references: [id], onDelete: Cascade)\n  members TeamMember[]\n}\n\nmodel TeamMember {\n  id        String   @id @default(cuid())\n  teamId    String\n  userId    String\n  createdAt DateTime @default(now())\n\n  // Relations\n  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([teamId, userId])\n}\n"
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  password  String\n  name      String\n  role      String   @default(\"user\") // \"admin\", \"team_lead\", \"user\"\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relations\n  ledTeams    Team[]       @relation(\"TeamLead\")\n  memberships TeamMember[]\n}\n\nmodel Team {\n  id          String   @id @default(cuid())\n  name        String\n  description String   @default(\"\")\n  leadId      String\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relations\n  lead     User         @relation(\"TeamLead\", fields: [leadId], references: [id], onDelete: Cascade)\n  members  TeamMember[]\n  projects Project[]\n}\n\nmodel TeamMember {\n  id        String   @id @default(cuid())\n  teamId    String\n  userId    String\n  createdAt DateTime @default(now())\n\n  // Relations\n  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([teamId, userId])\n}\n\nmodel Project {\n  id          String   @id @default(cuid())\n  name        String\n  description String   @default(\"\")\n  teamId      String\n  status      String   @default(\"active\") // \"active\", \"completed\", \"archived\"\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relations\n  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ledTeams\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"TeamLead\"},{\"name\":\"memberships\",\"kind\":\"object\",\"type\":\"TeamMember\",\"relationName\":\"TeamMemberToUser\"}],\"dbName\":null},\"Team\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"leadId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"lead\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TeamLead\"},{\"name\":\"members\",\"kind\":\"object\",\"type\":\"TeamMember\",\"relationName\":\"TeamToTeamMember\"}],\"dbName\":null},\"TeamMember\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"TeamToTeamMember\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TeamMemberToUser\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ledTeams\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"TeamLead\"},{\"name\":\"memberships\",\"kind\":\"object\",\"type\":\"TeamMember\",\"relationName\":\"TeamMemberToUser\"}],\"dbName\":null},\"Team\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"leadId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"lead\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TeamLead\"},{\"name\":\"members\",\"kind\":\"object\",\"type\":\"TeamMember\",\"relationName\":\"TeamToTeamMember\"},{\"name\":\"projects\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"ProjectToTeam\"}],\"dbName\":null},\"TeamMember\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"TeamToTeamMember\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TeamMemberToUser\"}],\"dbName\":null},\"Project\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"ProjectToTeam\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.compilerWasm = {
       getRuntime: async () => require('./query_compiler_bg.js'),

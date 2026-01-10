@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
   const session = await auth();
@@ -20,41 +21,37 @@ export default async function Home() {
 
         {/* CTA Buttons - Different based on auth status */}
         {session?.user ? (
-          <div className="mt-4 flex flex-col gap-4 sm:flex-row">
-            <Link
-              href="/dashboard"
-              className="flex h-14 items-center justify-center rounded-full bg-foreground px-8 text-lg font-medium text-background transition-all hover:scale-105 hover:bg-zinc-800 dark:hover:bg-zinc-200 sm:w-auto sm:px-12"
-            >
-              Перейти в Dashboard
-            </Link>
+          <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <Button size="lg" className="rounded-full px-12" asChild>
+              <Link href="/dashboard">
+                Перейти в Dashboard
+              </Link>
+            </Button>
             <span className="flex items-center text-sm text-zinc-600 dark:text-zinc-400">
               Вы вошли как {session.user.name}
             </span>
           </div>
         ) : (
           <div className="mt-4 flex flex-col gap-4 sm:flex-row">
-            <Link
-              href="/register"
-              className="flex h-14 items-center justify-center rounded-full bg-foreground px-8 text-lg font-medium text-background transition-all hover:scale-105 hover:bg-zinc-800 dark:hover:bg-zinc-200 sm:w-auto sm:px-12"
-            >
-              Начать
-            </Link>
-            <Link
-              href="/login"
-              className="flex h-14 items-center justify-center rounded-full border-2 border-foreground px-8 text-lg font-medium text-foreground transition-all hover:scale-105 hover:bg-foreground hover:text-background sm:w-auto sm:px-12"
-            >
-              Войти
-            </Link>
+            <Button size="lg" className="rounded-full px-12" asChild>
+              <Link href="/register">
+                Начать
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" className="rounded-full px-12" asChild>
+              <Link href="/login">
+                Войти
+              </Link>
+            </Button>
           </div>
         )}
 
         {/* Optional Secondary Link */}
-        <a
-          href="#features"
-          className="text-base font-medium text-zinc-700 underline decoration-zinc-400 underline-offset-4 transition-colors hover:text-foreground dark:text-zinc-300 dark:hover:text-foreground"
-        >
-          Узнать больше о Planner AI
-        </a>
+        <Button variant="link" asChild>
+          <a href="#features">
+            Узнать больше о Planner AI
+          </a>
+        </Button>
 
         {/* Features Section */}
         <div id="features" className="mt-16 grid gap-8 sm:grid-cols-3">
