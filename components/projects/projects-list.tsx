@@ -121,19 +121,18 @@ export function ProjectsList({ projects, teamId, canManage }: ProjectsListProps)
             Создан: {new Date(project.createdAt).toLocaleDateString("ru-RU")}
           </div>
 
-          {canManage && (
-            <div className="flex gap-2">
-              <Button
-                size="sm"
-                variant="outline"
-                className="flex-1"
-                onClick={() => {
-                  // TODO: Navigate to project details page
-                  toast.info("Страница проекта будет доступна в следующем обновлении");
-                }}
-              >
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex-1"
+              asChild
+            >
+              <a href={`/dashboard/teams/${teamId}/projects/${project.id}`}>
                 Открыть
-              </Button>
+              </a>
+            </Button>
+            {canManage && (
               <Button
                 size="sm"
                 variant="outline"
@@ -143,8 +142,8 @@ export function ProjectsList({ projects, teamId, canManage }: ProjectsListProps)
               >
                 {deletingId === project.id ? "..." : "Удалить"}
               </Button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       ))}
     </div>

@@ -60,9 +60,10 @@ export default async function TeamViewPage({ params }: PageProps) {
   // Get team lead info
   const teamLead = await getUserById(team.leadId);
 
-  // Get all members info
+  // Get all members info including team lead
+  const allMemberIds = [...new Set([team.leadId, ...team.memberIds])];
   const membersData = await Promise.all(
-    team.memberIds.map((id) => getUserById(id))
+    allMemberIds.map((id) => getUserById(id))
   );
   const members = membersData.filter((m) => m !== null);
 
@@ -253,44 +254,6 @@ export default async function TeamViewPage({ params }: PageProps) {
           <ProjectsList projects={projects} teamId={teamId} canManage={canManage} />
         </div>
 
-        {/* Statistics Section (Placeholder for future) */}
-        <div className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-          <h2 className="text-xl font-semibold text-foreground">
-            Статистика команды
-          </h2>
-          <div className="mt-6 grid gap-6 sm:grid-cols-3">
-            <div className="text-center">
-              <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
-                <span className="text-2xl">📋</span>
-              </div>
-              <p className="text-2xl font-bold text-foreground">0</p>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                Активных задач
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
-                <span className="text-2xl">✅</span>
-              </div>
-              <p className="text-2xl font-bold text-foreground">0</p>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                Завершенных задач
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/30">
-                <span className="text-2xl">📊</span>
-              </div>
-              <p className="text-2xl font-bold text-foreground">0%</p>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                Прогресс
-              </p>
-            </div>
-          </div>
-          <p className="mt-4 text-center text-xs text-zinc-500 dark:text-zinc-500">
-            Статистика будет доступна после реализации системы задач
-          </p>
-        </div>
 
         {/* Quick Actions */}
         {canManage && (

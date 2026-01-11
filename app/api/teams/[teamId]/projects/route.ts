@@ -72,12 +72,19 @@ export async function POST(
 
     const { teamId } = await params;
     const body = await request.json();
-    const { name, description, status } = body;
+    const { name, shortCode, description, status } = body;
 
     // Validate input
     if (!name || name.trim().length === 0) {
       return NextResponse.json(
         { error: "Название проекта обязательно" },
+        { status: 400 }
+      );
+    }
+
+    if (!shortCode || shortCode.trim().length === 0) {
+      return NextResponse.json(
+        { error: "Короткий код проекта обязателен" },
         { status: 400 }
       );
     }
@@ -111,6 +118,7 @@ export async function POST(
     const project = await prisma.project.create({
       data: {
         name: name.trim(),
+        shortCode: shortCode.trim().toUpperCase(),
         description: description?.trim() || "",
         status: status || "active",
         teamId,

@@ -149,9 +149,24 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
 exports.Prisma.ProjectScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  shortCode: 'shortCode',
   description: 'description',
   teamId: 'teamId',
   status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TaskScalarFieldEnum = {
+  id: 'id',
+  taskNumber: 'taskNumber',
+  title: 'title',
+  description: 'description',
+  projectId: 'projectId',
+  authorId: 'authorId',
+  priority: 'priority',
+  status: 'status',
+  parentId: 'parentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -185,9 +200,26 @@ exports.Prisma.TeamMemberOrderByRelevanceFieldEnum = {
 exports.Prisma.ProjectOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
+  shortCode: 'shortCode',
   description: 'description',
   teamId: 'teamId',
   status: 'status'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.TaskOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  projectId: 'projectId',
+  authorId: 'authorId',
+  priority: 'priority',
+  status: 'status',
+  parentId: 'parentId'
 };
 
 
@@ -195,7 +227,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Team: 'Team',
   TeamMember: 'TeamMember',
-  Project: 'Project'
+  Project: 'Project',
+  Task: 'Task'
 };
 
 /**

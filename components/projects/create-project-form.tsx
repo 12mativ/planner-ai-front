@@ -18,6 +18,7 @@ export function CreateProjectForm({ teamId, onSuccess }: CreateProjectFormProps)
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    shortCode: "",
     description: "",
   });
 
@@ -41,7 +42,7 @@ export function CreateProjectForm({ teamId, onSuccess }: CreateProjectFormProps)
       }
 
       toast.success("Проект успешно создан");
-      setFormData({ name: "", description: "" });
+      setFormData({ name: "", shortCode: "", description: "" });
       setIsOpen(false);
       router.refresh();
       onSuccess?.();
@@ -82,6 +83,26 @@ export function CreateProjectForm({ teamId, onSuccess }: CreateProjectFormProps)
         </div>
 
         <div>
+          <label htmlFor="shortCode" className="block text-sm font-medium text-foreground mb-2">
+            Короткий код *
+          </label>
+          <Input
+            id="shortCode"
+            type="text"
+            value={formData.shortCode}
+            onChange={(e) => setFormData({ ...formData, shortCode: e.target.value.toUpperCase() })}
+            placeholder="PROJ"
+            required
+            disabled={isLoading}
+            maxLength={10}
+            className="uppercase"
+          />
+          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">
+            Используется как префикс для задач (например, PROJ-1)
+          </p>
+        </div>
+
+        <div>
           <label htmlFor="description" className="block text-sm font-medium text-foreground mb-2">
             Описание
           </label>
@@ -104,7 +125,7 @@ export function CreateProjectForm({ teamId, onSuccess }: CreateProjectFormProps)
             variant="outline"
             onClick={() => {
               setIsOpen(false);
-              setFormData({ name: "", description: "" });
+              setFormData({ name: "", shortCode: "", description: "" });
             }}
             disabled={isLoading}
           >

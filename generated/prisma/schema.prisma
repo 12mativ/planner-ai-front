@@ -20,8 +20,11 @@ model User {
   updatedAt DateTime @updatedAt
 
   // Relations
-  ledTeams    Team[]       @relation("TeamLead")
-  memberships TeamMember[]
+  ledTeams      Team[]       @relation("TeamLead")
+  memberships   TeamMember[]
+  createdTasks  Task[]       @relation("TaskAuthor")
+  assignedTasks Task[]       @relation("TaskAssignees")
+  observedTasks Task[]       @relation("TaskObservers")
 }
 
 model Team {
@@ -54,6 +57,7 @@ model TeamMember {
 model Project {
   id          String   @id @default(cuid())
   name        String
+  shortCode   String   @default("PROJ") // Short code like "PROJ" for task prefixes
   description String   @default("")
   teamId      String
   status      String   @default("active") // "active", "completed", "archived"
@@ -61,5 +65,34 @@ model Project {
   updatedAt   DateTime @updatedAt
 
   // Relations
-  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  team  Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  tasks Task[]
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  taskNumber  Int // Sequential number within the project
+  title       String
+  description String   @default("")
+  projectId   String
+  authorId    String
+  priority    String   @default("medium") // "low", "medium", "high", "critical"
+  status      String   @default("todo") // "todo", "in_progress", "done"
+  parentId    String? // Optional parent task
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  author    User    @relation("TaskAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  assignees User[]  @relation("TaskAssignees")
+  observers User[]  @relation("TaskObservers")
+
+  // Task relationships
+  parent       Task?  @relation("TaskHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  subtasks     Task[] @relation("TaskHierarchy")
+  relatedTasks Task[] @relation("RelatedTasks")
+  relatedFrom  Task[] @relation("RelatedTasks")
+
+  @@unique([projectId, taskNumber])
 }
