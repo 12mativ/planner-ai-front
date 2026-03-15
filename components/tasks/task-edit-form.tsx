@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -26,6 +27,9 @@ interface RelatedTask {
   taskNumber: number;
   title: string;
   status?: string;
+  project?: {
+    shortCode: string;
+  };
 }
 
 interface Task {
@@ -35,6 +39,8 @@ interface Task {
   description: string;
   priority: string;
   status: string;
+  startDate?: string | null;
+  endDate?: string | null;
   createdAt: string;
   updatedAt: string;
   author: User;
@@ -85,6 +91,8 @@ export function TaskEditForm({
     observerIds: task.observers.map((o) => o.id),
     parentId: task.parent?.id || (null as string | null),
     relatedTaskIds: task.relatedTasks?.map((t) => t.id) || ([] as string[]),
+    startDate: task.startDate ? new Date(task.startDate).toISOString().split('T')[0] : "",
+    endDate: task.endDate ? new Date(task.endDate).toISOString().split('T')[0] : "",
   });
 
   // Format tasks for select options (exclude current task)
@@ -171,6 +179,8 @@ export function TaskEditForm({
       observerIds: task.observers.map((o) => o.id),
       parentId: task.parent?.id || null,
       relatedTaskIds: task.relatedTasks?.map((t) => t.id) || [],
+      startDate: task.startDate ? new Date(task.startDate).toISOString().split('T')[0] : "",
+      endDate: task.endDate ? new Date(task.endDate).toISOString().split('T')[0] : "",
     });
     setIsEditing(false);
   };
@@ -245,9 +255,9 @@ export function TaskEditForm({
                     setFormData({ ...formData, description: e.target.value })
                   }
                   placeholder="Введите описание задачи (необязательно)"
-                  rows={6}
+                  rows={8}
                   disabled={isLoading}
-                  className="max-h-96 resize-y"
+                  className="resize-none max-h-60 overflow-y-auto"
                 />
               </div>
 
@@ -337,9 +347,12 @@ export function TaskEditForm({
             </Select>
           ) : task.parent ? (
             <div>
-              <p className="text-sm font-medium text-foreground">
-                #{task.parent.taskNumber} - {task.parent.title}
-              </p>
+              <Link
+                href={`/dashboard/teams/${teamId}/projects/${projectId}/tasks/${task.parent.id}`}
+                className="text-sm font-medium text-foreground hover:text-primary hover:underline"
+              >
+                {task.parent.project?.shortCode || projectShortCode}-{task.parent.taskNumber}: {task.parent.title}
+              </Link>
             </div>
           ) : (
             <p className="text-sm text-zinc-500 dark:text-zinc-500 italic">
@@ -348,30 +361,7 @@ export function TaskEditForm({
           )}
         </div>
 
-        {/* Subtasks */}
-        {task.subtasks && task.subtasks.length > 0 && (
-          <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
-            <h3 className="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-3">
-              Подзадачи
-            </h3>
-            <div className="space-y-2">
-              {task.subtasks.map((subtask) => (
-                <div key={subtask.id}>
-                  <p className="text-sm font-medium text-foreground">
-                    #{subtask.taskNumber} - {subtask.title}
-                  </p>
-                  {subtask.status && (
-                    <p className="text-xs text-zinc-500 dark:text-zinc-500">
-                      {getStatusLabel(subtask.status)}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Related Tasks */}
+        {/* Related Tasks - Combined with Subtasks */}
         <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
           <h3 className="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-3">
             Связанные задачи
@@ -386,13 +376,33 @@ export function TaskEditForm({
               placeholder="Выберите связанные задачи"
               disabled={isLoading}
             />
-          ) : task.relatedTasks && task.relatedTasks.length > 0 ? (
+          ) : (task.relatedTasks && task.relatedTasks.length > 0) || (task.subtasks && task.subtasks.length > 0) ? (
             <div className="space-y-2">
-              {task.relatedTasks.map((relatedTask) => (
+              {/* Show subtasks (tasks that have this task as parent) */}
+              {task.subtasks && task.subtasks.map((subtask) => (
+                <div key={subtask.id}>
+                  <Link
+                    href={`/dashboard/teams/${teamId}/projects/${projectId}/tasks/${subtask.id}`}
+                    className="text-sm font-medium text-foreground hover:text-primary hover:underline"
+                  >
+                    {subtask.project?.shortCode || projectShortCode}-{subtask.taskNumber}: {subtask.title}
+                  </Link>
+                  {subtask.status && (
+                    <p className="text-xs text-zinc-500 dark:text-zinc-500">
+                      {getStatusLabel(subtask.status)}
+                    </p>
+                  )}
+                </div>
+              ))}
+              {/* Show related tasks */}
+              {task.relatedTasks && task.relatedTasks.map((relatedTask) => (
                 <div key={relatedTask.id}>
-                  <p className="text-sm font-medium text-foreground">
-                    #{relatedTask.taskNumber} - {relatedTask.title}
-                  </p>
+                  <Link
+                    href={`/dashboard/teams/${teamId}/projects/${projectId}/tasks/${relatedTask.id}`}
+                    className="text-sm font-medium text-foreground hover:text-primary hover:underline"
+                  >
+                    {relatedTask.project?.shortCode || projectShortCode}-{relatedTask.taskNumber}: {relatedTask.title}
+                  </Link>
                 </div>
               ))}
             </div>
@@ -462,6 +472,76 @@ export function TaskEditForm({
             <p className="text-base font-medium text-foreground">
               {getPriorityLabel(task.priority)}
             </p>
+          )}
+        </div>
+
+        {/* Dates */}
+        <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+          <h3 className="text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-3">
+            Даты
+          </h3>
+          {isEditing ? (
+            <div className="space-y-3">
+              <div>
+                <label
+                  htmlFor="startDate"
+                  className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1"
+                >
+                  Дата начала
+                </label>
+                <Input
+                  id="startDate"
+                  type="date"
+                  value={formData.startDate}
+                  onChange={(e) =>
+                    setFormData({ ...formData, startDate: e.target.value })
+                  }
+                  disabled={isLoading}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="endDate"
+                  className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1"
+                >
+                  Дата окончания
+                </label>
+                <Input
+                  id="endDate"
+                  type="date"
+                  value={formData.endDate}
+                  onChange={(e) =>
+                    setFormData({ ...formData, endDate: e.target.value })
+                  }
+                  disabled={isLoading}
+                  min={formData.startDate || undefined}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {task.startDate ? (
+                <div>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-500">Начало</p>
+                  <p className="text-sm font-medium text-foreground">
+                    {new Date(task.startDate).toLocaleDateString("ru-RU")}
+                  </p>
+                </div>
+              ) : null}
+              {task.endDate ? (
+                <div>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-500">Окончание</p>
+                  <p className="text-sm font-medium text-foreground">
+                    {new Date(task.endDate).toLocaleDateString("ru-RU")}
+                  </p>
+                </div>
+              ) : null}
+              {!task.startDate && !task.endDate && (
+                <p className="text-sm text-zinc-500 dark:text-zinc-500 italic">
+                  Даты не установлены
+                </p>
+              )}
+            </div>
           )}
         </div>
 

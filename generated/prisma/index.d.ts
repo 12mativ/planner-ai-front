@@ -38,6 +38,21 @@ export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
  * 
  */
 export type Task = $Result.DefaultSelection<Prisma.$TaskPayload>
+/**
+ * Model AIPlan
+ * 
+ */
+export type AIPlan = $Result.DefaultSelection<Prisma.$AIPlanPayload>
+/**
+ * Model AIPlanMessage
+ * 
+ */
+export type AIPlanMessage = $Result.DefaultSelection<Prisma.$AIPlanMessagePayload>
+/**
+ * Model AIPlanIteration
+ * 
+ */
+export type AIPlanIteration = $Result.DefaultSelection<Prisma.$AIPlanIterationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -205,6 +220,36 @@ export class PrismaClient<
     * ```
     */
   get task(): Prisma.TaskDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIPlan`: Exposes CRUD operations for the **AIPlan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIPlans
+    * const aIPlans = await prisma.aIPlan.findMany()
+    * ```
+    */
+  get aIPlan(): Prisma.AIPlanDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIPlanMessage`: Exposes CRUD operations for the **AIPlanMessage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIPlanMessages
+    * const aIPlanMessages = await prisma.aIPlanMessage.findMany()
+    * ```
+    */
+  get aIPlanMessage(): Prisma.AIPlanMessageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIPlanIteration`: Exposes CRUD operations for the **AIPlanIteration** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIPlanIterations
+    * const aIPlanIterations = await prisma.aIPlanIteration.findMany()
+    * ```
+    */
+  get aIPlanIteration(): Prisma.AIPlanIterationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -643,7 +688,10 @@ export namespace Prisma {
     Team: 'Team',
     TeamMember: 'TeamMember',
     Project: 'Project',
-    Task: 'Task'
+    Task: 'Task',
+    AIPlan: 'AIPlan',
+    AIPlanMessage: 'AIPlanMessage',
+    AIPlanIteration: 'AIPlanIteration'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -659,7 +707,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "team" | "teamMember" | "project" | "task"
+      modelProps: "user" | "team" | "teamMember" | "project" | "task" | "aIPlan" | "aIPlanMessage" | "aIPlanIteration"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -993,6 +1041,204 @@ export namespace Prisma {
           }
         }
       }
+      AIPlan: {
+        payload: Prisma.$AIPlanPayload<ExtArgs>
+        fields: Prisma.AIPlanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIPlanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIPlanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanPayload>
+          }
+          findFirst: {
+            args: Prisma.AIPlanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIPlanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanPayload>
+          }
+          findMany: {
+            args: Prisma.AIPlanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanPayload>[]
+          }
+          create: {
+            args: Prisma.AIPlanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanPayload>
+          }
+          createMany: {
+            args: Prisma.AIPlanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AIPlanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanPayload>
+          }
+          update: {
+            args: Prisma.AIPlanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIPlanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIPlanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AIPlanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanPayload>
+          }
+          aggregate: {
+            args: Prisma.AIPlanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIPlan>
+          }
+          groupBy: {
+            args: Prisma.AIPlanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIPlanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIPlanCountArgs<ExtArgs>
+            result: $Utils.Optional<AIPlanCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIPlanMessage: {
+        payload: Prisma.$AIPlanMessagePayload<ExtArgs>
+        fields: Prisma.AIPlanMessageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIPlanMessageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanMessagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIPlanMessageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanMessagePayload>
+          }
+          findFirst: {
+            args: Prisma.AIPlanMessageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanMessagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIPlanMessageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanMessagePayload>
+          }
+          findMany: {
+            args: Prisma.AIPlanMessageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanMessagePayload>[]
+          }
+          create: {
+            args: Prisma.AIPlanMessageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanMessagePayload>
+          }
+          createMany: {
+            args: Prisma.AIPlanMessageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AIPlanMessageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanMessagePayload>
+          }
+          update: {
+            args: Prisma.AIPlanMessageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanMessagePayload>
+          }
+          deleteMany: {
+            args: Prisma.AIPlanMessageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIPlanMessageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AIPlanMessageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanMessagePayload>
+          }
+          aggregate: {
+            args: Prisma.AIPlanMessageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIPlanMessage>
+          }
+          groupBy: {
+            args: Prisma.AIPlanMessageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIPlanMessageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIPlanMessageCountArgs<ExtArgs>
+            result: $Utils.Optional<AIPlanMessageCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIPlanIteration: {
+        payload: Prisma.$AIPlanIterationPayload<ExtArgs>
+        fields: Prisma.AIPlanIterationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIPlanIterationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanIterationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIPlanIterationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanIterationPayload>
+          }
+          findFirst: {
+            args: Prisma.AIPlanIterationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanIterationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIPlanIterationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanIterationPayload>
+          }
+          findMany: {
+            args: Prisma.AIPlanIterationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanIterationPayload>[]
+          }
+          create: {
+            args: Prisma.AIPlanIterationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanIterationPayload>
+          }
+          createMany: {
+            args: Prisma.AIPlanIterationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AIPlanIterationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanIterationPayload>
+          }
+          update: {
+            args: Prisma.AIPlanIterationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanIterationPayload>
+          }
+          deleteMany: {
+            args: Prisma.AIPlanIterationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIPlanIterationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AIPlanIterationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIPlanIterationPayload>
+          }
+          aggregate: {
+            args: Prisma.AIPlanIterationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIPlanIteration>
+          }
+          groupBy: {
+            args: Prisma.AIPlanIterationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIPlanIterationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIPlanIterationCountArgs<ExtArgs>
+            result: $Utils.Optional<AIPlanIterationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1106,6 +1352,9 @@ export namespace Prisma {
     teamMember?: TeamMemberOmit
     project?: ProjectOmit
     task?: TaskOmit
+    aIPlan?: AIPlanOmit
+    aIPlanMessage?: AIPlanMessageOmit
+    aIPlanIteration?: AIPlanIterationOmit
   }
 
   /* Types for Logging */
@@ -1191,6 +1440,7 @@ export namespace Prisma {
     createdTasks: number
     assignedTasks: number
     observedTasks: number
+    aiPlans: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1199,6 +1449,7 @@ export namespace Prisma {
     createdTasks?: boolean | UserCountOutputTypeCountCreatedTasksArgs
     assignedTasks?: boolean | UserCountOutputTypeCountAssignedTasksArgs
     observedTasks?: boolean | UserCountOutputTypeCountObservedTasksArgs
+    aiPlans?: boolean | UserCountOutputTypeCountAiPlansArgs
   }
 
   // Custom InputTypes
@@ -1245,6 +1496,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountObservedTasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TaskWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAiPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIPlanWhereInput
   }
 
 
@@ -1294,10 +1552,12 @@ export namespace Prisma {
 
   export type ProjectCountOutputType = {
     tasks: number
+    aiPlans: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tasks?: boolean | ProjectCountOutputTypeCountTasksArgs
+    aiPlans?: boolean | ProjectCountOutputTypeCountAiPlansArgs
   }
 
   // Custom InputTypes
@@ -1316,6 +1576,13 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountTasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TaskWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountAiPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIPlanWhereInput
   }
 
 
@@ -1383,6 +1650,46 @@ export namespace Prisma {
    */
   export type TaskCountOutputTypeCountRelatedFromArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TaskWhereInput
+  }
+
+
+  /**
+   * Count Type AIPlanCountOutputType
+   */
+
+  export type AIPlanCountOutputType = {
+    conversations: number
+    iterations: number
+  }
+
+  export type AIPlanCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    conversations?: boolean | AIPlanCountOutputTypeCountConversationsArgs
+    iterations?: boolean | AIPlanCountOutputTypeCountIterationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AIPlanCountOutputType without action
+   */
+  export type AIPlanCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanCountOutputType
+     */
+    select?: AIPlanCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AIPlanCountOutputType without action
+   */
+  export type AIPlanCountOutputTypeCountConversationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIPlanMessageWhereInput
+  }
+
+  /**
+   * AIPlanCountOutputType without action
+   */
+  export type AIPlanCountOutputTypeCountIterationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIPlanIterationWhereInput
   }
 
 
@@ -1575,6 +1882,7 @@ export namespace Prisma {
     createdTasks?: boolean | User$createdTasksArgs<ExtArgs>
     assignedTasks?: boolean | User$assignedTasksArgs<ExtArgs>
     observedTasks?: boolean | User$observedTasksArgs<ExtArgs>
+    aiPlans?: boolean | User$aiPlansArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1597,6 +1905,7 @@ export namespace Prisma {
     createdTasks?: boolean | User$createdTasksArgs<ExtArgs>
     assignedTasks?: boolean | User$assignedTasksArgs<ExtArgs>
     observedTasks?: boolean | User$observedTasksArgs<ExtArgs>
+    aiPlans?: boolean | User$aiPlansArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1608,6 +1917,7 @@ export namespace Prisma {
       createdTasks: Prisma.$TaskPayload<ExtArgs>[]
       assignedTasks: Prisma.$TaskPayload<ExtArgs>[]
       observedTasks: Prisma.$TaskPayload<ExtArgs>[]
+      aiPlans: Prisma.$AIPlanPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1962,6 +2272,7 @@ export namespace Prisma {
     createdTasks<T extends User$createdTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$createdTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assignedTasks<T extends User$assignedTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$assignedTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     observedTasks<T extends User$observedTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$observedTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aiPlans<T extends User$aiPlansArgs<ExtArgs> = {}>(args?: Subset<T, User$aiPlansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2458,6 +2769,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * User.aiPlans
+   */
+  export type User$aiPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    where?: AIPlanWhereInput
+    orderBy?: AIPlanOrderByWithRelationInput | AIPlanOrderByWithRelationInput[]
+    cursor?: AIPlanWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AIPlanScalarFieldEnum | AIPlanScalarFieldEnum[]
   }
 
   /**
@@ -4589,6 +4924,7 @@ export namespace Prisma {
     updatedAt?: boolean
     team?: boolean | TeamDefaultArgs<ExtArgs>
     tasks?: boolean | Project$tasksArgs<ExtArgs>
+    aiPlans?: boolean | Project$aiPlansArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -4609,6 +4945,7 @@ export namespace Prisma {
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     team?: boolean | TeamDefaultArgs<ExtArgs>
     tasks?: boolean | Project$tasksArgs<ExtArgs>
+    aiPlans?: boolean | Project$aiPlansArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -4617,6 +4954,7 @@ export namespace Prisma {
     objects: {
       team: Prisma.$TeamPayload<ExtArgs>
       tasks: Prisma.$TaskPayload<ExtArgs>[]
+      aiPlans: Prisma.$AIPlanPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4969,6 +5307,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     team<T extends TeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeamDefaultArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     tasks<T extends Project$tasksArgs<ExtArgs> = {}>(args?: Subset<T, Project$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aiPlans<T extends Project$aiPlansArgs<ExtArgs> = {}>(args?: Subset<T, Project$aiPlansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5373,6 +5712,30 @@ export namespace Prisma {
   }
 
   /**
+   * Project.aiPlans
+   */
+  export type Project$aiPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    where?: AIPlanWhereInput
+    orderBy?: AIPlanOrderByWithRelationInput | AIPlanOrderByWithRelationInput[]
+    cursor?: AIPlanWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AIPlanScalarFieldEnum | AIPlanScalarFieldEnum[]
+  }
+
+  /**
    * Project without action
    */
   export type ProjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5421,6 +5784,8 @@ export namespace Prisma {
     priority: string | null
     status: string | null
     parentId: string | null
+    startDate: Date | null
+    endDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5435,6 +5800,8 @@ export namespace Prisma {
     priority: string | null
     status: string | null
     parentId: string | null
+    startDate: Date | null
+    endDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5449,6 +5816,8 @@ export namespace Prisma {
     priority: number
     status: number
     parentId: number
+    startDate: number
+    endDate: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -5473,6 +5842,8 @@ export namespace Prisma {
     priority?: true
     status?: true
     parentId?: true
+    startDate?: true
+    endDate?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5487,6 +5858,8 @@ export namespace Prisma {
     priority?: true
     status?: true
     parentId?: true
+    startDate?: true
+    endDate?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5501,6 +5874,8 @@ export namespace Prisma {
     priority?: true
     status?: true
     parentId?: true
+    startDate?: true
+    endDate?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -5602,6 +5977,8 @@ export namespace Prisma {
     priority: string
     status: string
     parentId: string | null
+    startDate: Date | null
+    endDate: Date | null
     createdAt: Date
     updatedAt: Date
     _count: TaskCountAggregateOutputType | null
@@ -5635,6 +6012,8 @@ export namespace Prisma {
     priority?: boolean
     status?: boolean
     parentId?: boolean
+    startDate?: boolean
+    endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
@@ -5660,11 +6039,13 @@ export namespace Prisma {
     priority?: boolean
     status?: boolean
     parentId?: boolean
+    startDate?: boolean
+    endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "taskNumber" | "title" | "description" | "projectId" | "authorId" | "priority" | "status" | "parentId" | "createdAt" | "updatedAt", ExtArgs["result"]["task"]>
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "taskNumber" | "title" | "description" | "projectId" | "authorId" | "priority" | "status" | "parentId" | "startDate" | "endDate" | "createdAt" | "updatedAt", ExtArgs["result"]["task"]>
   export type TaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
@@ -5699,6 +6080,8 @@ export namespace Prisma {
       priority: string
       status: string
       parentId: string | null
+      startDate: Date | null
+      endDate: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["task"]>
@@ -6087,6 +6470,8 @@ export namespace Prisma {
     readonly priority: FieldRef<"Task", 'String'>
     readonly status: FieldRef<"Task", 'String'>
     readonly parentId: FieldRef<"Task", 'String'>
+    readonly startDate: FieldRef<"Task", 'DateTime'>
+    readonly endDate: FieldRef<"Task", 'DateTime'>
     readonly createdAt: FieldRef<"Task", 'DateTime'>
     readonly updatedAt: FieldRef<"Task", 'DateTime'>
   }
@@ -6590,6 +6975,2925 @@ export namespace Prisma {
 
 
   /**
+   * Model AIPlan
+   */
+
+  export type AggregateAIPlan = {
+    _count: AIPlanCountAggregateOutputType | null
+    _min: AIPlanMinAggregateOutputType | null
+    _max: AIPlanMaxAggregateOutputType | null
+  }
+
+  export type AIPlanMinAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    prompt: string | null
+    status: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AIPlanMaxAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    prompt: string | null
+    status: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AIPlanCountAggregateOutputType = {
+    id: number
+    projectId: number
+    prompt: number
+    status: number
+    generatedPlan: number
+    createdBy: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AIPlanMinAggregateInputType = {
+    id?: true
+    projectId?: true
+    prompt?: true
+    status?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AIPlanMaxAggregateInputType = {
+    id?: true
+    projectId?: true
+    prompt?: true
+    status?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AIPlanCountAggregateInputType = {
+    id?: true
+    projectId?: true
+    prompt?: true
+    status?: true
+    generatedPlan?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AIPlanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIPlan to aggregate.
+     */
+    where?: AIPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlans to fetch.
+     */
+    orderBy?: AIPlanOrderByWithRelationInput | AIPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIPlans
+    **/
+    _count?: true | AIPlanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIPlanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIPlanMaxAggregateInputType
+  }
+
+  export type GetAIPlanAggregateType<T extends AIPlanAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIPlan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIPlan[P]>
+      : GetScalarType<T[P], AggregateAIPlan[P]>
+  }
+
+
+
+
+  export type AIPlanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIPlanWhereInput
+    orderBy?: AIPlanOrderByWithAggregationInput | AIPlanOrderByWithAggregationInput[]
+    by: AIPlanScalarFieldEnum[] | AIPlanScalarFieldEnum
+    having?: AIPlanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIPlanCountAggregateInputType | true
+    _min?: AIPlanMinAggregateInputType
+    _max?: AIPlanMaxAggregateInputType
+  }
+
+  export type AIPlanGroupByOutputType = {
+    id: string
+    projectId: string
+    prompt: string
+    status: string
+    generatedPlan: JsonValue
+    createdBy: string
+    createdAt: Date
+    updatedAt: Date
+    _count: AIPlanCountAggregateOutputType | null
+    _min: AIPlanMinAggregateOutputType | null
+    _max: AIPlanMaxAggregateOutputType | null
+  }
+
+  type GetAIPlanGroupByPayload<T extends AIPlanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIPlanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIPlanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIPlanGroupByOutputType[P]>
+            : GetScalarType<T[P], AIPlanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIPlanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    prompt?: boolean
+    status?: boolean
+    generatedPlan?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    conversations?: boolean | AIPlan$conversationsArgs<ExtArgs>
+    iterations?: boolean | AIPlan$iterationsArgs<ExtArgs>
+    _count?: boolean | AIPlanCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIPlan"]>
+
+
+
+  export type AIPlanSelectScalar = {
+    id?: boolean
+    projectId?: boolean
+    prompt?: boolean
+    status?: boolean
+    generatedPlan?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AIPlanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "prompt" | "status" | "generatedPlan" | "createdBy" | "createdAt" | "updatedAt", ExtArgs["result"]["aIPlan"]>
+  export type AIPlanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    conversations?: boolean | AIPlan$conversationsArgs<ExtArgs>
+    iterations?: boolean | AIPlan$iterationsArgs<ExtArgs>
+    _count?: boolean | AIPlanCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $AIPlanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIPlan"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+      creator: Prisma.$UserPayload<ExtArgs>
+      conversations: Prisma.$AIPlanMessagePayload<ExtArgs>[]
+      iterations: Prisma.$AIPlanIterationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      projectId: string
+      prompt: string
+      status: string
+      generatedPlan: Prisma.JsonValue
+      createdBy: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aIPlan"]>
+    composites: {}
+  }
+
+  type AIPlanGetPayload<S extends boolean | null | undefined | AIPlanDefaultArgs> = $Result.GetResult<Prisma.$AIPlanPayload, S>
+
+  type AIPlanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIPlanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIPlanCountAggregateInputType | true
+    }
+
+  export interface AIPlanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIPlan'], meta: { name: 'AIPlan' } }
+    /**
+     * Find zero or one AIPlan that matches the filter.
+     * @param {AIPlanFindUniqueArgs} args - Arguments to find a AIPlan
+     * @example
+     * // Get one AIPlan
+     * const aIPlan = await prisma.aIPlan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIPlanFindUniqueArgs>(args: SelectSubset<T, AIPlanFindUniqueArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIPlan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIPlanFindUniqueOrThrowArgs} args - Arguments to find a AIPlan
+     * @example
+     * // Get one AIPlan
+     * const aIPlan = await prisma.aIPlan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIPlanFindUniqueOrThrowArgs>(args: SelectSubset<T, AIPlanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIPlan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanFindFirstArgs} args - Arguments to find a AIPlan
+     * @example
+     * // Get one AIPlan
+     * const aIPlan = await prisma.aIPlan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIPlanFindFirstArgs>(args?: SelectSubset<T, AIPlanFindFirstArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIPlan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanFindFirstOrThrowArgs} args - Arguments to find a AIPlan
+     * @example
+     * // Get one AIPlan
+     * const aIPlan = await prisma.aIPlan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIPlanFindFirstOrThrowArgs>(args?: SelectSubset<T, AIPlanFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIPlans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIPlans
+     * const aIPlans = await prisma.aIPlan.findMany()
+     * 
+     * // Get first 10 AIPlans
+     * const aIPlans = await prisma.aIPlan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIPlanWithIdOnly = await prisma.aIPlan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIPlanFindManyArgs>(args?: SelectSubset<T, AIPlanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIPlan.
+     * @param {AIPlanCreateArgs} args - Arguments to create a AIPlan.
+     * @example
+     * // Create one AIPlan
+     * const AIPlan = await prisma.aIPlan.create({
+     *   data: {
+     *     // ... data to create a AIPlan
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIPlanCreateArgs>(args: SelectSubset<T, AIPlanCreateArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIPlans.
+     * @param {AIPlanCreateManyArgs} args - Arguments to create many AIPlans.
+     * @example
+     * // Create many AIPlans
+     * const aIPlan = await prisma.aIPlan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIPlanCreateManyArgs>(args?: SelectSubset<T, AIPlanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AIPlan.
+     * @param {AIPlanDeleteArgs} args - Arguments to delete one AIPlan.
+     * @example
+     * // Delete one AIPlan
+     * const AIPlan = await prisma.aIPlan.delete({
+     *   where: {
+     *     // ... filter to delete one AIPlan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIPlanDeleteArgs>(args: SelectSubset<T, AIPlanDeleteArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIPlan.
+     * @param {AIPlanUpdateArgs} args - Arguments to update one AIPlan.
+     * @example
+     * // Update one AIPlan
+     * const aIPlan = await prisma.aIPlan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIPlanUpdateArgs>(args: SelectSubset<T, AIPlanUpdateArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIPlans.
+     * @param {AIPlanDeleteManyArgs} args - Arguments to filter AIPlans to delete.
+     * @example
+     * // Delete a few AIPlans
+     * const { count } = await prisma.aIPlan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIPlanDeleteManyArgs>(args?: SelectSubset<T, AIPlanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIPlans
+     * const aIPlan = await prisma.aIPlan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIPlanUpdateManyArgs>(args: SelectSubset<T, AIPlanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AIPlan.
+     * @param {AIPlanUpsertArgs} args - Arguments to update or create a AIPlan.
+     * @example
+     * // Update or create a AIPlan
+     * const aIPlan = await prisma.aIPlan.upsert({
+     *   create: {
+     *     // ... data to create a AIPlan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIPlan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIPlanUpsertArgs>(args: SelectSubset<T, AIPlanUpsertArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanCountArgs} args - Arguments to filter AIPlans to count.
+     * @example
+     * // Count the number of AIPlans
+     * const count = await prisma.aIPlan.count({
+     *   where: {
+     *     // ... the filter for the AIPlans we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIPlanCountArgs>(
+      args?: Subset<T, AIPlanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIPlanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIPlanAggregateArgs>(args: Subset<T, AIPlanAggregateArgs>): Prisma.PrismaPromise<GetAIPlanAggregateType<T>>
+
+    /**
+     * Group by AIPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIPlanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIPlanGroupByArgs['orderBy'] }
+        : { orderBy?: AIPlanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIPlanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIPlanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIPlan model
+   */
+  readonly fields: AIPlanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIPlan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIPlanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    conversations<T extends AIPlan$conversationsArgs<ExtArgs> = {}>(args?: Subset<T, AIPlan$conversationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    iterations<T extends AIPlan$iterationsArgs<ExtArgs> = {}>(args?: Subset<T, AIPlan$iterationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIPlan model
+   */
+  interface AIPlanFieldRefs {
+    readonly id: FieldRef<"AIPlan", 'String'>
+    readonly projectId: FieldRef<"AIPlan", 'String'>
+    readonly prompt: FieldRef<"AIPlan", 'String'>
+    readonly status: FieldRef<"AIPlan", 'String'>
+    readonly generatedPlan: FieldRef<"AIPlan", 'Json'>
+    readonly createdBy: FieldRef<"AIPlan", 'String'>
+    readonly createdAt: FieldRef<"AIPlan", 'DateTime'>
+    readonly updatedAt: FieldRef<"AIPlan", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIPlan findUnique
+   */
+  export type AIPlanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlan to fetch.
+     */
+    where: AIPlanWhereUniqueInput
+  }
+
+  /**
+   * AIPlan findUniqueOrThrow
+   */
+  export type AIPlanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlan to fetch.
+     */
+    where: AIPlanWhereUniqueInput
+  }
+
+  /**
+   * AIPlan findFirst
+   */
+  export type AIPlanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlan to fetch.
+     */
+    where?: AIPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlans to fetch.
+     */
+    orderBy?: AIPlanOrderByWithRelationInput | AIPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIPlans.
+     */
+    cursor?: AIPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIPlans.
+     */
+    distinct?: AIPlanScalarFieldEnum | AIPlanScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlan findFirstOrThrow
+   */
+  export type AIPlanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlan to fetch.
+     */
+    where?: AIPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlans to fetch.
+     */
+    orderBy?: AIPlanOrderByWithRelationInput | AIPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIPlans.
+     */
+    cursor?: AIPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIPlans.
+     */
+    distinct?: AIPlanScalarFieldEnum | AIPlanScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlan findMany
+   */
+  export type AIPlanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlans to fetch.
+     */
+    where?: AIPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlans to fetch.
+     */
+    orderBy?: AIPlanOrderByWithRelationInput | AIPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIPlans.
+     */
+    cursor?: AIPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlans.
+     */
+    skip?: number
+    distinct?: AIPlanScalarFieldEnum | AIPlanScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlan create
+   */
+  export type AIPlanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIPlan.
+     */
+    data: XOR<AIPlanCreateInput, AIPlanUncheckedCreateInput>
+  }
+
+  /**
+   * AIPlan createMany
+   */
+  export type AIPlanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIPlans.
+     */
+    data: AIPlanCreateManyInput | AIPlanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIPlan update
+   */
+  export type AIPlanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIPlan.
+     */
+    data: XOR<AIPlanUpdateInput, AIPlanUncheckedUpdateInput>
+    /**
+     * Choose, which AIPlan to update.
+     */
+    where: AIPlanWhereUniqueInput
+  }
+
+  /**
+   * AIPlan updateMany
+   */
+  export type AIPlanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIPlans.
+     */
+    data: XOR<AIPlanUpdateManyMutationInput, AIPlanUncheckedUpdateManyInput>
+    /**
+     * Filter which AIPlans to update
+     */
+    where?: AIPlanWhereInput
+    /**
+     * Limit how many AIPlans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIPlan upsert
+   */
+  export type AIPlanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIPlan to update in case it exists.
+     */
+    where: AIPlanWhereUniqueInput
+    /**
+     * In case the AIPlan found by the `where` argument doesn't exist, create a new AIPlan with this data.
+     */
+    create: XOR<AIPlanCreateInput, AIPlanUncheckedCreateInput>
+    /**
+     * In case the AIPlan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIPlanUpdateInput, AIPlanUncheckedUpdateInput>
+  }
+
+  /**
+   * AIPlan delete
+   */
+  export type AIPlanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+    /**
+     * Filter which AIPlan to delete.
+     */
+    where: AIPlanWhereUniqueInput
+  }
+
+  /**
+   * AIPlan deleteMany
+   */
+  export type AIPlanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIPlans to delete
+     */
+    where?: AIPlanWhereInput
+    /**
+     * Limit how many AIPlans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIPlan.conversations
+   */
+  export type AIPlan$conversationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    where?: AIPlanMessageWhereInput
+    orderBy?: AIPlanMessageOrderByWithRelationInput | AIPlanMessageOrderByWithRelationInput[]
+    cursor?: AIPlanMessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AIPlanMessageScalarFieldEnum | AIPlanMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlan.iterations
+   */
+  export type AIPlan$iterationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    where?: AIPlanIterationWhereInput
+    orderBy?: AIPlanIterationOrderByWithRelationInput | AIPlanIterationOrderByWithRelationInput[]
+    cursor?: AIPlanIterationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AIPlanIterationScalarFieldEnum | AIPlanIterationScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlan without action
+   */
+  export type AIPlanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlan
+     */
+    select?: AIPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlan
+     */
+    omit?: AIPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIPlanMessage
+   */
+
+  export type AggregateAIPlanMessage = {
+    _count: AIPlanMessageCountAggregateOutputType | null
+    _min: AIPlanMessageMinAggregateOutputType | null
+    _max: AIPlanMessageMaxAggregateOutputType | null
+  }
+
+  export type AIPlanMessageMinAggregateOutputType = {
+    id: string | null
+    planId: string | null
+    role: string | null
+    content: string | null
+    createdAt: Date | null
+  }
+
+  export type AIPlanMessageMaxAggregateOutputType = {
+    id: string | null
+    planId: string | null
+    role: string | null
+    content: string | null
+    createdAt: Date | null
+  }
+
+  export type AIPlanMessageCountAggregateOutputType = {
+    id: number
+    planId: number
+    role: number
+    content: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AIPlanMessageMinAggregateInputType = {
+    id?: true
+    planId?: true
+    role?: true
+    content?: true
+    createdAt?: true
+  }
+
+  export type AIPlanMessageMaxAggregateInputType = {
+    id?: true
+    planId?: true
+    role?: true
+    content?: true
+    createdAt?: true
+  }
+
+  export type AIPlanMessageCountAggregateInputType = {
+    id?: true
+    planId?: true
+    role?: true
+    content?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AIPlanMessageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIPlanMessage to aggregate.
+     */
+    where?: AIPlanMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlanMessages to fetch.
+     */
+    orderBy?: AIPlanMessageOrderByWithRelationInput | AIPlanMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIPlanMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlanMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlanMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIPlanMessages
+    **/
+    _count?: true | AIPlanMessageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIPlanMessageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIPlanMessageMaxAggregateInputType
+  }
+
+  export type GetAIPlanMessageAggregateType<T extends AIPlanMessageAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIPlanMessage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIPlanMessage[P]>
+      : GetScalarType<T[P], AggregateAIPlanMessage[P]>
+  }
+
+
+
+
+  export type AIPlanMessageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIPlanMessageWhereInput
+    orderBy?: AIPlanMessageOrderByWithAggregationInput | AIPlanMessageOrderByWithAggregationInput[]
+    by: AIPlanMessageScalarFieldEnum[] | AIPlanMessageScalarFieldEnum
+    having?: AIPlanMessageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIPlanMessageCountAggregateInputType | true
+    _min?: AIPlanMessageMinAggregateInputType
+    _max?: AIPlanMessageMaxAggregateInputType
+  }
+
+  export type AIPlanMessageGroupByOutputType = {
+    id: string
+    planId: string
+    role: string
+    content: string
+    createdAt: Date
+    _count: AIPlanMessageCountAggregateOutputType | null
+    _min: AIPlanMessageMinAggregateOutputType | null
+    _max: AIPlanMessageMaxAggregateOutputType | null
+  }
+
+  type GetAIPlanMessageGroupByPayload<T extends AIPlanMessageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIPlanMessageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIPlanMessageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIPlanMessageGroupByOutputType[P]>
+            : GetScalarType<T[P], AIPlanMessageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIPlanMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    planId?: boolean
+    role?: boolean
+    content?: boolean
+    createdAt?: boolean
+    plan?: boolean | AIPlanDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIPlanMessage"]>
+
+
+
+  export type AIPlanMessageSelectScalar = {
+    id?: boolean
+    planId?: boolean
+    role?: boolean
+    content?: boolean
+    createdAt?: boolean
+  }
+
+  export type AIPlanMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "planId" | "role" | "content" | "createdAt", ExtArgs["result"]["aIPlanMessage"]>
+  export type AIPlanMessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    plan?: boolean | AIPlanDefaultArgs<ExtArgs>
+  }
+
+  export type $AIPlanMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIPlanMessage"
+    objects: {
+      plan: Prisma.$AIPlanPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      planId: string
+      role: string
+      content: string
+      createdAt: Date
+    }, ExtArgs["result"]["aIPlanMessage"]>
+    composites: {}
+  }
+
+  type AIPlanMessageGetPayload<S extends boolean | null | undefined | AIPlanMessageDefaultArgs> = $Result.GetResult<Prisma.$AIPlanMessagePayload, S>
+
+  type AIPlanMessageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIPlanMessageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIPlanMessageCountAggregateInputType | true
+    }
+
+  export interface AIPlanMessageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIPlanMessage'], meta: { name: 'AIPlanMessage' } }
+    /**
+     * Find zero or one AIPlanMessage that matches the filter.
+     * @param {AIPlanMessageFindUniqueArgs} args - Arguments to find a AIPlanMessage
+     * @example
+     * // Get one AIPlanMessage
+     * const aIPlanMessage = await prisma.aIPlanMessage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIPlanMessageFindUniqueArgs>(args: SelectSubset<T, AIPlanMessageFindUniqueArgs<ExtArgs>>): Prisma__AIPlanMessageClient<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIPlanMessage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIPlanMessageFindUniqueOrThrowArgs} args - Arguments to find a AIPlanMessage
+     * @example
+     * // Get one AIPlanMessage
+     * const aIPlanMessage = await prisma.aIPlanMessage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIPlanMessageFindUniqueOrThrowArgs>(args: SelectSubset<T, AIPlanMessageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIPlanMessageClient<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIPlanMessage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanMessageFindFirstArgs} args - Arguments to find a AIPlanMessage
+     * @example
+     * // Get one AIPlanMessage
+     * const aIPlanMessage = await prisma.aIPlanMessage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIPlanMessageFindFirstArgs>(args?: SelectSubset<T, AIPlanMessageFindFirstArgs<ExtArgs>>): Prisma__AIPlanMessageClient<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIPlanMessage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanMessageFindFirstOrThrowArgs} args - Arguments to find a AIPlanMessage
+     * @example
+     * // Get one AIPlanMessage
+     * const aIPlanMessage = await prisma.aIPlanMessage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIPlanMessageFindFirstOrThrowArgs>(args?: SelectSubset<T, AIPlanMessageFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIPlanMessageClient<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIPlanMessages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanMessageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIPlanMessages
+     * const aIPlanMessages = await prisma.aIPlanMessage.findMany()
+     * 
+     * // Get first 10 AIPlanMessages
+     * const aIPlanMessages = await prisma.aIPlanMessage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIPlanMessageWithIdOnly = await prisma.aIPlanMessage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIPlanMessageFindManyArgs>(args?: SelectSubset<T, AIPlanMessageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIPlanMessage.
+     * @param {AIPlanMessageCreateArgs} args - Arguments to create a AIPlanMessage.
+     * @example
+     * // Create one AIPlanMessage
+     * const AIPlanMessage = await prisma.aIPlanMessage.create({
+     *   data: {
+     *     // ... data to create a AIPlanMessage
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIPlanMessageCreateArgs>(args: SelectSubset<T, AIPlanMessageCreateArgs<ExtArgs>>): Prisma__AIPlanMessageClient<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIPlanMessages.
+     * @param {AIPlanMessageCreateManyArgs} args - Arguments to create many AIPlanMessages.
+     * @example
+     * // Create many AIPlanMessages
+     * const aIPlanMessage = await prisma.aIPlanMessage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIPlanMessageCreateManyArgs>(args?: SelectSubset<T, AIPlanMessageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AIPlanMessage.
+     * @param {AIPlanMessageDeleteArgs} args - Arguments to delete one AIPlanMessage.
+     * @example
+     * // Delete one AIPlanMessage
+     * const AIPlanMessage = await prisma.aIPlanMessage.delete({
+     *   where: {
+     *     // ... filter to delete one AIPlanMessage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIPlanMessageDeleteArgs>(args: SelectSubset<T, AIPlanMessageDeleteArgs<ExtArgs>>): Prisma__AIPlanMessageClient<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIPlanMessage.
+     * @param {AIPlanMessageUpdateArgs} args - Arguments to update one AIPlanMessage.
+     * @example
+     * // Update one AIPlanMessage
+     * const aIPlanMessage = await prisma.aIPlanMessage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIPlanMessageUpdateArgs>(args: SelectSubset<T, AIPlanMessageUpdateArgs<ExtArgs>>): Prisma__AIPlanMessageClient<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIPlanMessages.
+     * @param {AIPlanMessageDeleteManyArgs} args - Arguments to filter AIPlanMessages to delete.
+     * @example
+     * // Delete a few AIPlanMessages
+     * const { count } = await prisma.aIPlanMessage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIPlanMessageDeleteManyArgs>(args?: SelectSubset<T, AIPlanMessageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIPlanMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanMessageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIPlanMessages
+     * const aIPlanMessage = await prisma.aIPlanMessage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIPlanMessageUpdateManyArgs>(args: SelectSubset<T, AIPlanMessageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AIPlanMessage.
+     * @param {AIPlanMessageUpsertArgs} args - Arguments to update or create a AIPlanMessage.
+     * @example
+     * // Update or create a AIPlanMessage
+     * const aIPlanMessage = await prisma.aIPlanMessage.upsert({
+     *   create: {
+     *     // ... data to create a AIPlanMessage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIPlanMessage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIPlanMessageUpsertArgs>(args: SelectSubset<T, AIPlanMessageUpsertArgs<ExtArgs>>): Prisma__AIPlanMessageClient<$Result.GetResult<Prisma.$AIPlanMessagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIPlanMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanMessageCountArgs} args - Arguments to filter AIPlanMessages to count.
+     * @example
+     * // Count the number of AIPlanMessages
+     * const count = await prisma.aIPlanMessage.count({
+     *   where: {
+     *     // ... the filter for the AIPlanMessages we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIPlanMessageCountArgs>(
+      args?: Subset<T, AIPlanMessageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIPlanMessageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIPlanMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanMessageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIPlanMessageAggregateArgs>(args: Subset<T, AIPlanMessageAggregateArgs>): Prisma.PrismaPromise<GetAIPlanMessageAggregateType<T>>
+
+    /**
+     * Group by AIPlanMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanMessageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIPlanMessageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIPlanMessageGroupByArgs['orderBy'] }
+        : { orderBy?: AIPlanMessageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIPlanMessageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIPlanMessageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIPlanMessage model
+   */
+  readonly fields: AIPlanMessageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIPlanMessage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIPlanMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    plan<T extends AIPlanDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AIPlanDefaultArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIPlanMessage model
+   */
+  interface AIPlanMessageFieldRefs {
+    readonly id: FieldRef<"AIPlanMessage", 'String'>
+    readonly planId: FieldRef<"AIPlanMessage", 'String'>
+    readonly role: FieldRef<"AIPlanMessage", 'String'>
+    readonly content: FieldRef<"AIPlanMessage", 'String'>
+    readonly createdAt: FieldRef<"AIPlanMessage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIPlanMessage findUnique
+   */
+  export type AIPlanMessageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanMessage to fetch.
+     */
+    where: AIPlanMessageWhereUniqueInput
+  }
+
+  /**
+   * AIPlanMessage findUniqueOrThrow
+   */
+  export type AIPlanMessageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanMessage to fetch.
+     */
+    where: AIPlanMessageWhereUniqueInput
+  }
+
+  /**
+   * AIPlanMessage findFirst
+   */
+  export type AIPlanMessageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanMessage to fetch.
+     */
+    where?: AIPlanMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlanMessages to fetch.
+     */
+    orderBy?: AIPlanMessageOrderByWithRelationInput | AIPlanMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIPlanMessages.
+     */
+    cursor?: AIPlanMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlanMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlanMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIPlanMessages.
+     */
+    distinct?: AIPlanMessageScalarFieldEnum | AIPlanMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlanMessage findFirstOrThrow
+   */
+  export type AIPlanMessageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanMessage to fetch.
+     */
+    where?: AIPlanMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlanMessages to fetch.
+     */
+    orderBy?: AIPlanMessageOrderByWithRelationInput | AIPlanMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIPlanMessages.
+     */
+    cursor?: AIPlanMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlanMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlanMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIPlanMessages.
+     */
+    distinct?: AIPlanMessageScalarFieldEnum | AIPlanMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlanMessage findMany
+   */
+  export type AIPlanMessageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanMessages to fetch.
+     */
+    where?: AIPlanMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlanMessages to fetch.
+     */
+    orderBy?: AIPlanMessageOrderByWithRelationInput | AIPlanMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIPlanMessages.
+     */
+    cursor?: AIPlanMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlanMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlanMessages.
+     */
+    skip?: number
+    distinct?: AIPlanMessageScalarFieldEnum | AIPlanMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlanMessage create
+   */
+  export type AIPlanMessageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIPlanMessage.
+     */
+    data: XOR<AIPlanMessageCreateInput, AIPlanMessageUncheckedCreateInput>
+  }
+
+  /**
+   * AIPlanMessage createMany
+   */
+  export type AIPlanMessageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIPlanMessages.
+     */
+    data: AIPlanMessageCreateManyInput | AIPlanMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIPlanMessage update
+   */
+  export type AIPlanMessageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIPlanMessage.
+     */
+    data: XOR<AIPlanMessageUpdateInput, AIPlanMessageUncheckedUpdateInput>
+    /**
+     * Choose, which AIPlanMessage to update.
+     */
+    where: AIPlanMessageWhereUniqueInput
+  }
+
+  /**
+   * AIPlanMessage updateMany
+   */
+  export type AIPlanMessageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIPlanMessages.
+     */
+    data: XOR<AIPlanMessageUpdateManyMutationInput, AIPlanMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which AIPlanMessages to update
+     */
+    where?: AIPlanMessageWhereInput
+    /**
+     * Limit how many AIPlanMessages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIPlanMessage upsert
+   */
+  export type AIPlanMessageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIPlanMessage to update in case it exists.
+     */
+    where: AIPlanMessageWhereUniqueInput
+    /**
+     * In case the AIPlanMessage found by the `where` argument doesn't exist, create a new AIPlanMessage with this data.
+     */
+    create: XOR<AIPlanMessageCreateInput, AIPlanMessageUncheckedCreateInput>
+    /**
+     * In case the AIPlanMessage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIPlanMessageUpdateInput, AIPlanMessageUncheckedUpdateInput>
+  }
+
+  /**
+   * AIPlanMessage delete
+   */
+  export type AIPlanMessageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+    /**
+     * Filter which AIPlanMessage to delete.
+     */
+    where: AIPlanMessageWhereUniqueInput
+  }
+
+  /**
+   * AIPlanMessage deleteMany
+   */
+  export type AIPlanMessageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIPlanMessages to delete
+     */
+    where?: AIPlanMessageWhereInput
+    /**
+     * Limit how many AIPlanMessages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIPlanMessage without action
+   */
+  export type AIPlanMessageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanMessage
+     */
+    select?: AIPlanMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanMessage
+     */
+    omit?: AIPlanMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanMessageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIPlanIteration
+   */
+
+  export type AggregateAIPlanIteration = {
+    _count: AIPlanIterationCountAggregateOutputType | null
+    _avg: AIPlanIterationAvgAggregateOutputType | null
+    _sum: AIPlanIterationSumAggregateOutputType | null
+    _min: AIPlanIterationMinAggregateOutputType | null
+    _max: AIPlanIterationMaxAggregateOutputType | null
+  }
+
+  export type AIPlanIterationAvgAggregateOutputType = {
+    iterationNum: number | null
+  }
+
+  export type AIPlanIterationSumAggregateOutputType = {
+    iterationNum: number | null
+  }
+
+  export type AIPlanIterationMinAggregateOutputType = {
+    id: string | null
+    planId: string | null
+    iterationNum: number | null
+    prompt: string | null
+    createdAt: Date | null
+  }
+
+  export type AIPlanIterationMaxAggregateOutputType = {
+    id: string | null
+    planId: string | null
+    iterationNum: number | null
+    prompt: string | null
+    createdAt: Date | null
+  }
+
+  export type AIPlanIterationCountAggregateOutputType = {
+    id: number
+    planId: number
+    iterationNum: number
+    prompt: number
+    generatedPlan: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AIPlanIterationAvgAggregateInputType = {
+    iterationNum?: true
+  }
+
+  export type AIPlanIterationSumAggregateInputType = {
+    iterationNum?: true
+  }
+
+  export type AIPlanIterationMinAggregateInputType = {
+    id?: true
+    planId?: true
+    iterationNum?: true
+    prompt?: true
+    createdAt?: true
+  }
+
+  export type AIPlanIterationMaxAggregateInputType = {
+    id?: true
+    planId?: true
+    iterationNum?: true
+    prompt?: true
+    createdAt?: true
+  }
+
+  export type AIPlanIterationCountAggregateInputType = {
+    id?: true
+    planId?: true
+    iterationNum?: true
+    prompt?: true
+    generatedPlan?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AIPlanIterationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIPlanIteration to aggregate.
+     */
+    where?: AIPlanIterationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlanIterations to fetch.
+     */
+    orderBy?: AIPlanIterationOrderByWithRelationInput | AIPlanIterationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIPlanIterationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlanIterations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlanIterations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIPlanIterations
+    **/
+    _count?: true | AIPlanIterationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AIPlanIterationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AIPlanIterationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIPlanIterationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIPlanIterationMaxAggregateInputType
+  }
+
+  export type GetAIPlanIterationAggregateType<T extends AIPlanIterationAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIPlanIteration]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIPlanIteration[P]>
+      : GetScalarType<T[P], AggregateAIPlanIteration[P]>
+  }
+
+
+
+
+  export type AIPlanIterationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIPlanIterationWhereInput
+    orderBy?: AIPlanIterationOrderByWithAggregationInput | AIPlanIterationOrderByWithAggregationInput[]
+    by: AIPlanIterationScalarFieldEnum[] | AIPlanIterationScalarFieldEnum
+    having?: AIPlanIterationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIPlanIterationCountAggregateInputType | true
+    _avg?: AIPlanIterationAvgAggregateInputType
+    _sum?: AIPlanIterationSumAggregateInputType
+    _min?: AIPlanIterationMinAggregateInputType
+    _max?: AIPlanIterationMaxAggregateInputType
+  }
+
+  export type AIPlanIterationGroupByOutputType = {
+    id: string
+    planId: string
+    iterationNum: number
+    prompt: string
+    generatedPlan: JsonValue
+    createdAt: Date
+    _count: AIPlanIterationCountAggregateOutputType | null
+    _avg: AIPlanIterationAvgAggregateOutputType | null
+    _sum: AIPlanIterationSumAggregateOutputType | null
+    _min: AIPlanIterationMinAggregateOutputType | null
+    _max: AIPlanIterationMaxAggregateOutputType | null
+  }
+
+  type GetAIPlanIterationGroupByPayload<T extends AIPlanIterationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIPlanIterationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIPlanIterationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIPlanIterationGroupByOutputType[P]>
+            : GetScalarType<T[P], AIPlanIterationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIPlanIterationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    planId?: boolean
+    iterationNum?: boolean
+    prompt?: boolean
+    generatedPlan?: boolean
+    createdAt?: boolean
+    plan?: boolean | AIPlanDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIPlanIteration"]>
+
+
+
+  export type AIPlanIterationSelectScalar = {
+    id?: boolean
+    planId?: boolean
+    iterationNum?: boolean
+    prompt?: boolean
+    generatedPlan?: boolean
+    createdAt?: boolean
+  }
+
+  export type AIPlanIterationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "planId" | "iterationNum" | "prompt" | "generatedPlan" | "createdAt", ExtArgs["result"]["aIPlanIteration"]>
+  export type AIPlanIterationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    plan?: boolean | AIPlanDefaultArgs<ExtArgs>
+  }
+
+  export type $AIPlanIterationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIPlanIteration"
+    objects: {
+      plan: Prisma.$AIPlanPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      planId: string
+      iterationNum: number
+      prompt: string
+      generatedPlan: Prisma.JsonValue
+      createdAt: Date
+    }, ExtArgs["result"]["aIPlanIteration"]>
+    composites: {}
+  }
+
+  type AIPlanIterationGetPayload<S extends boolean | null | undefined | AIPlanIterationDefaultArgs> = $Result.GetResult<Prisma.$AIPlanIterationPayload, S>
+
+  type AIPlanIterationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIPlanIterationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIPlanIterationCountAggregateInputType | true
+    }
+
+  export interface AIPlanIterationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIPlanIteration'], meta: { name: 'AIPlanIteration' } }
+    /**
+     * Find zero or one AIPlanIteration that matches the filter.
+     * @param {AIPlanIterationFindUniqueArgs} args - Arguments to find a AIPlanIteration
+     * @example
+     * // Get one AIPlanIteration
+     * const aIPlanIteration = await prisma.aIPlanIteration.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIPlanIterationFindUniqueArgs>(args: SelectSubset<T, AIPlanIterationFindUniqueArgs<ExtArgs>>): Prisma__AIPlanIterationClient<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIPlanIteration that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIPlanIterationFindUniqueOrThrowArgs} args - Arguments to find a AIPlanIteration
+     * @example
+     * // Get one AIPlanIteration
+     * const aIPlanIteration = await prisma.aIPlanIteration.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIPlanIterationFindUniqueOrThrowArgs>(args: SelectSubset<T, AIPlanIterationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIPlanIterationClient<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIPlanIteration that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanIterationFindFirstArgs} args - Arguments to find a AIPlanIteration
+     * @example
+     * // Get one AIPlanIteration
+     * const aIPlanIteration = await prisma.aIPlanIteration.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIPlanIterationFindFirstArgs>(args?: SelectSubset<T, AIPlanIterationFindFirstArgs<ExtArgs>>): Prisma__AIPlanIterationClient<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIPlanIteration that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanIterationFindFirstOrThrowArgs} args - Arguments to find a AIPlanIteration
+     * @example
+     * // Get one AIPlanIteration
+     * const aIPlanIteration = await prisma.aIPlanIteration.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIPlanIterationFindFirstOrThrowArgs>(args?: SelectSubset<T, AIPlanIterationFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIPlanIterationClient<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIPlanIterations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanIterationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIPlanIterations
+     * const aIPlanIterations = await prisma.aIPlanIteration.findMany()
+     * 
+     * // Get first 10 AIPlanIterations
+     * const aIPlanIterations = await prisma.aIPlanIteration.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIPlanIterationWithIdOnly = await prisma.aIPlanIteration.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIPlanIterationFindManyArgs>(args?: SelectSubset<T, AIPlanIterationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIPlanIteration.
+     * @param {AIPlanIterationCreateArgs} args - Arguments to create a AIPlanIteration.
+     * @example
+     * // Create one AIPlanIteration
+     * const AIPlanIteration = await prisma.aIPlanIteration.create({
+     *   data: {
+     *     // ... data to create a AIPlanIteration
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIPlanIterationCreateArgs>(args: SelectSubset<T, AIPlanIterationCreateArgs<ExtArgs>>): Prisma__AIPlanIterationClient<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIPlanIterations.
+     * @param {AIPlanIterationCreateManyArgs} args - Arguments to create many AIPlanIterations.
+     * @example
+     * // Create many AIPlanIterations
+     * const aIPlanIteration = await prisma.aIPlanIteration.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIPlanIterationCreateManyArgs>(args?: SelectSubset<T, AIPlanIterationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AIPlanIteration.
+     * @param {AIPlanIterationDeleteArgs} args - Arguments to delete one AIPlanIteration.
+     * @example
+     * // Delete one AIPlanIteration
+     * const AIPlanIteration = await prisma.aIPlanIteration.delete({
+     *   where: {
+     *     // ... filter to delete one AIPlanIteration
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIPlanIterationDeleteArgs>(args: SelectSubset<T, AIPlanIterationDeleteArgs<ExtArgs>>): Prisma__AIPlanIterationClient<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIPlanIteration.
+     * @param {AIPlanIterationUpdateArgs} args - Arguments to update one AIPlanIteration.
+     * @example
+     * // Update one AIPlanIteration
+     * const aIPlanIteration = await prisma.aIPlanIteration.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIPlanIterationUpdateArgs>(args: SelectSubset<T, AIPlanIterationUpdateArgs<ExtArgs>>): Prisma__AIPlanIterationClient<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIPlanIterations.
+     * @param {AIPlanIterationDeleteManyArgs} args - Arguments to filter AIPlanIterations to delete.
+     * @example
+     * // Delete a few AIPlanIterations
+     * const { count } = await prisma.aIPlanIteration.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIPlanIterationDeleteManyArgs>(args?: SelectSubset<T, AIPlanIterationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIPlanIterations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanIterationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIPlanIterations
+     * const aIPlanIteration = await prisma.aIPlanIteration.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIPlanIterationUpdateManyArgs>(args: SelectSubset<T, AIPlanIterationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AIPlanIteration.
+     * @param {AIPlanIterationUpsertArgs} args - Arguments to update or create a AIPlanIteration.
+     * @example
+     * // Update or create a AIPlanIteration
+     * const aIPlanIteration = await prisma.aIPlanIteration.upsert({
+     *   create: {
+     *     // ... data to create a AIPlanIteration
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIPlanIteration we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIPlanIterationUpsertArgs>(args: SelectSubset<T, AIPlanIterationUpsertArgs<ExtArgs>>): Prisma__AIPlanIterationClient<$Result.GetResult<Prisma.$AIPlanIterationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIPlanIterations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanIterationCountArgs} args - Arguments to filter AIPlanIterations to count.
+     * @example
+     * // Count the number of AIPlanIterations
+     * const count = await prisma.aIPlanIteration.count({
+     *   where: {
+     *     // ... the filter for the AIPlanIterations we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIPlanIterationCountArgs>(
+      args?: Subset<T, AIPlanIterationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIPlanIterationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIPlanIteration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanIterationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIPlanIterationAggregateArgs>(args: Subset<T, AIPlanIterationAggregateArgs>): Prisma.PrismaPromise<GetAIPlanIterationAggregateType<T>>
+
+    /**
+     * Group by AIPlanIteration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIPlanIterationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIPlanIterationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIPlanIterationGroupByArgs['orderBy'] }
+        : { orderBy?: AIPlanIterationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIPlanIterationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIPlanIterationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIPlanIteration model
+   */
+  readonly fields: AIPlanIterationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIPlanIteration.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIPlanIterationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    plan<T extends AIPlanDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AIPlanDefaultArgs<ExtArgs>>): Prisma__AIPlanClient<$Result.GetResult<Prisma.$AIPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIPlanIteration model
+   */
+  interface AIPlanIterationFieldRefs {
+    readonly id: FieldRef<"AIPlanIteration", 'String'>
+    readonly planId: FieldRef<"AIPlanIteration", 'String'>
+    readonly iterationNum: FieldRef<"AIPlanIteration", 'Int'>
+    readonly prompt: FieldRef<"AIPlanIteration", 'String'>
+    readonly generatedPlan: FieldRef<"AIPlanIteration", 'Json'>
+    readonly createdAt: FieldRef<"AIPlanIteration", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIPlanIteration findUnique
+   */
+  export type AIPlanIterationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanIteration to fetch.
+     */
+    where: AIPlanIterationWhereUniqueInput
+  }
+
+  /**
+   * AIPlanIteration findUniqueOrThrow
+   */
+  export type AIPlanIterationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanIteration to fetch.
+     */
+    where: AIPlanIterationWhereUniqueInput
+  }
+
+  /**
+   * AIPlanIteration findFirst
+   */
+  export type AIPlanIterationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanIteration to fetch.
+     */
+    where?: AIPlanIterationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlanIterations to fetch.
+     */
+    orderBy?: AIPlanIterationOrderByWithRelationInput | AIPlanIterationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIPlanIterations.
+     */
+    cursor?: AIPlanIterationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlanIterations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlanIterations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIPlanIterations.
+     */
+    distinct?: AIPlanIterationScalarFieldEnum | AIPlanIterationScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlanIteration findFirstOrThrow
+   */
+  export type AIPlanIterationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanIteration to fetch.
+     */
+    where?: AIPlanIterationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlanIterations to fetch.
+     */
+    orderBy?: AIPlanIterationOrderByWithRelationInput | AIPlanIterationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIPlanIterations.
+     */
+    cursor?: AIPlanIterationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlanIterations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlanIterations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIPlanIterations.
+     */
+    distinct?: AIPlanIterationScalarFieldEnum | AIPlanIterationScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlanIteration findMany
+   */
+  export type AIPlanIterationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    /**
+     * Filter, which AIPlanIterations to fetch.
+     */
+    where?: AIPlanIterationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIPlanIterations to fetch.
+     */
+    orderBy?: AIPlanIterationOrderByWithRelationInput | AIPlanIterationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIPlanIterations.
+     */
+    cursor?: AIPlanIterationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIPlanIterations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIPlanIterations.
+     */
+    skip?: number
+    distinct?: AIPlanIterationScalarFieldEnum | AIPlanIterationScalarFieldEnum[]
+  }
+
+  /**
+   * AIPlanIteration create
+   */
+  export type AIPlanIterationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIPlanIteration.
+     */
+    data: XOR<AIPlanIterationCreateInput, AIPlanIterationUncheckedCreateInput>
+  }
+
+  /**
+   * AIPlanIteration createMany
+   */
+  export type AIPlanIterationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIPlanIterations.
+     */
+    data: AIPlanIterationCreateManyInput | AIPlanIterationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIPlanIteration update
+   */
+  export type AIPlanIterationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIPlanIteration.
+     */
+    data: XOR<AIPlanIterationUpdateInput, AIPlanIterationUncheckedUpdateInput>
+    /**
+     * Choose, which AIPlanIteration to update.
+     */
+    where: AIPlanIterationWhereUniqueInput
+  }
+
+  /**
+   * AIPlanIteration updateMany
+   */
+  export type AIPlanIterationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIPlanIterations.
+     */
+    data: XOR<AIPlanIterationUpdateManyMutationInput, AIPlanIterationUncheckedUpdateManyInput>
+    /**
+     * Filter which AIPlanIterations to update
+     */
+    where?: AIPlanIterationWhereInput
+    /**
+     * Limit how many AIPlanIterations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIPlanIteration upsert
+   */
+  export type AIPlanIterationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIPlanIteration to update in case it exists.
+     */
+    where: AIPlanIterationWhereUniqueInput
+    /**
+     * In case the AIPlanIteration found by the `where` argument doesn't exist, create a new AIPlanIteration with this data.
+     */
+    create: XOR<AIPlanIterationCreateInput, AIPlanIterationUncheckedCreateInput>
+    /**
+     * In case the AIPlanIteration was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIPlanIterationUpdateInput, AIPlanIterationUncheckedUpdateInput>
+  }
+
+  /**
+   * AIPlanIteration delete
+   */
+  export type AIPlanIterationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+    /**
+     * Filter which AIPlanIteration to delete.
+     */
+    where: AIPlanIterationWhereUniqueInput
+  }
+
+  /**
+   * AIPlanIteration deleteMany
+   */
+  export type AIPlanIterationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIPlanIterations to delete
+     */
+    where?: AIPlanIterationWhereInput
+    /**
+     * Limit how many AIPlanIterations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIPlanIteration without action
+   */
+  export type AIPlanIterationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIPlanIteration
+     */
+    select?: AIPlanIterationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIPlanIteration
+     */
+    omit?: AIPlanIterationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIPlanIterationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6662,11 +9966,50 @@ export namespace Prisma {
     priority: 'priority',
     status: 'status',
     parentId: 'parentId',
+    startDate: 'startDate',
+    endDate: 'endDate',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+  export const AIPlanScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    prompt: 'prompt',
+    status: 'status',
+    generatedPlan: 'generatedPlan',
+    createdBy: 'createdBy',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AIPlanScalarFieldEnum = (typeof AIPlanScalarFieldEnum)[keyof typeof AIPlanScalarFieldEnum]
+
+
+  export const AIPlanMessageScalarFieldEnum: {
+    id: 'id',
+    planId: 'planId',
+    role: 'role',
+    content: 'content',
+    createdAt: 'createdAt'
+  };
+
+  export type AIPlanMessageScalarFieldEnum = (typeof AIPlanMessageScalarFieldEnum)[keyof typeof AIPlanMessageScalarFieldEnum]
+
+
+  export const AIPlanIterationScalarFieldEnum: {
+    id: 'id',
+    planId: 'planId',
+    iterationNum: 'iterationNum',
+    prompt: 'prompt',
+    generatedPlan: 'generatedPlan',
+    createdAt: 'createdAt'
+  };
+
+  export type AIPlanIterationScalarFieldEnum = (typeof AIPlanIterationScalarFieldEnum)[keyof typeof AIPlanIterationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6675,6 +10018,13 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const UserOrderByRelevanceFieldEnum: {
@@ -6741,6 +10091,53 @@ export namespace Prisma {
   export type TaskOrderByRelevanceFieldEnum = (typeof TaskOrderByRelevanceFieldEnum)[keyof typeof TaskOrderByRelevanceFieldEnum]
 
 
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const AIPlanOrderByRelevanceFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    prompt: 'prompt',
+    status: 'status',
+    createdBy: 'createdBy'
+  };
+
+  export type AIPlanOrderByRelevanceFieldEnum = (typeof AIPlanOrderByRelevanceFieldEnum)[keyof typeof AIPlanOrderByRelevanceFieldEnum]
+
+
+  export const AIPlanMessageOrderByRelevanceFieldEnum: {
+    id: 'id',
+    planId: 'planId',
+    role: 'role',
+    content: 'content'
+  };
+
+  export type AIPlanMessageOrderByRelevanceFieldEnum = (typeof AIPlanMessageOrderByRelevanceFieldEnum)[keyof typeof AIPlanMessageOrderByRelevanceFieldEnum]
+
+
+  export const AIPlanIterationOrderByRelevanceFieldEnum: {
+    id: 'id',
+    planId: 'planId',
+    prompt: 'prompt'
+  };
+
+  export type AIPlanIterationOrderByRelevanceFieldEnum = (typeof AIPlanIterationOrderByRelevanceFieldEnum)[keyof typeof AIPlanIterationOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -6764,6 +10161,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -6793,6 +10204,7 @@ export namespace Prisma {
     createdTasks?: TaskListRelationFilter
     assignedTasks?: TaskListRelationFilter
     observedTasks?: TaskListRelationFilter
+    aiPlans?: AIPlanListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6808,6 +10220,7 @@ export namespace Prisma {
     createdTasks?: TaskOrderByRelationAggregateInput
     assignedTasks?: TaskOrderByRelationAggregateInput
     observedTasks?: TaskOrderByRelationAggregateInput
+    aiPlans?: AIPlanOrderByRelationAggregateInput
     _relevance?: UserOrderByRelevanceInput
   }
 
@@ -6827,6 +10240,7 @@ export namespace Prisma {
     createdTasks?: TaskListRelationFilter
     assignedTasks?: TaskListRelationFilter
     observedTasks?: TaskListRelationFilter
+    aiPlans?: AIPlanListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -6991,6 +10405,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
     tasks?: TaskListRelationFilter
+    aiPlans?: AIPlanListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -7004,6 +10419,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     team?: TeamOrderByWithRelationInput
     tasks?: TaskOrderByRelationAggregateInput
+    aiPlans?: AIPlanOrderByRelationAggregateInput
     _relevance?: ProjectOrderByRelevanceInput
   }
 
@@ -7021,6 +10437,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
     tasks?: TaskListRelationFilter
+    aiPlans?: AIPlanListRelationFilter
   }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -7064,6 +10481,8 @@ export namespace Prisma {
     priority?: StringFilter<"Task"> | string
     status?: StringFilter<"Task"> | string
     parentId?: StringNullableFilter<"Task"> | string | null
+    startDate?: DateTimeNullableFilter<"Task"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Task"> | Date | string | null
     createdAt?: DateTimeFilter<"Task"> | Date | string
     updatedAt?: DateTimeFilter<"Task"> | Date | string
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
@@ -7086,6 +10505,8 @@ export namespace Prisma {
     priority?: SortOrder
     status?: SortOrder
     parentId?: SortOrderInput | SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     project?: ProjectOrderByWithRelationInput
@@ -7113,6 +10534,8 @@ export namespace Prisma {
     priority?: StringFilter<"Task"> | string
     status?: StringFilter<"Task"> | string
     parentId?: StringNullableFilter<"Task"> | string | null
+    startDate?: DateTimeNullableFilter<"Task"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Task"> | Date | string | null
     createdAt?: DateTimeFilter<"Task"> | Date | string
     updatedAt?: DateTimeFilter<"Task"> | Date | string
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
@@ -7135,6 +10558,8 @@ export namespace Prisma {
     priority?: SortOrder
     status?: SortOrder
     parentId?: SortOrderInput | SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TaskCountOrderByAggregateInput
@@ -7157,8 +10582,210 @@ export namespace Prisma {
     priority?: StringWithAggregatesFilter<"Task"> | string
     status?: StringWithAggregatesFilter<"Task"> | string
     parentId?: StringNullableWithAggregatesFilter<"Task"> | string | null
+    startDate?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
+    endDate?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
+  }
+
+  export type AIPlanWhereInput = {
+    AND?: AIPlanWhereInput | AIPlanWhereInput[]
+    OR?: AIPlanWhereInput[]
+    NOT?: AIPlanWhereInput | AIPlanWhereInput[]
+    id?: StringFilter<"AIPlan"> | string
+    projectId?: StringFilter<"AIPlan"> | string
+    prompt?: StringFilter<"AIPlan"> | string
+    status?: StringFilter<"AIPlan"> | string
+    generatedPlan?: JsonFilter<"AIPlan">
+    createdBy?: StringFilter<"AIPlan"> | string
+    createdAt?: DateTimeFilter<"AIPlan"> | Date | string
+    updatedAt?: DateTimeFilter<"AIPlan"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    conversations?: AIPlanMessageListRelationFilter
+    iterations?: AIPlanIterationListRelationFilter
+  }
+
+  export type AIPlanOrderByWithRelationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    prompt?: SortOrder
+    status?: SortOrder
+    generatedPlan?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    creator?: UserOrderByWithRelationInput
+    conversations?: AIPlanMessageOrderByRelationAggregateInput
+    iterations?: AIPlanIterationOrderByRelationAggregateInput
+    _relevance?: AIPlanOrderByRelevanceInput
+  }
+
+  export type AIPlanWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIPlanWhereInput | AIPlanWhereInput[]
+    OR?: AIPlanWhereInput[]
+    NOT?: AIPlanWhereInput | AIPlanWhereInput[]
+    projectId?: StringFilter<"AIPlan"> | string
+    prompt?: StringFilter<"AIPlan"> | string
+    status?: StringFilter<"AIPlan"> | string
+    generatedPlan?: JsonFilter<"AIPlan">
+    createdBy?: StringFilter<"AIPlan"> | string
+    createdAt?: DateTimeFilter<"AIPlan"> | Date | string
+    updatedAt?: DateTimeFilter<"AIPlan"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    conversations?: AIPlanMessageListRelationFilter
+    iterations?: AIPlanIterationListRelationFilter
+  }, "id">
+
+  export type AIPlanOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    prompt?: SortOrder
+    status?: SortOrder
+    generatedPlan?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AIPlanCountOrderByAggregateInput
+    _max?: AIPlanMaxOrderByAggregateInput
+    _min?: AIPlanMinOrderByAggregateInput
+  }
+
+  export type AIPlanScalarWhereWithAggregatesInput = {
+    AND?: AIPlanScalarWhereWithAggregatesInput | AIPlanScalarWhereWithAggregatesInput[]
+    OR?: AIPlanScalarWhereWithAggregatesInput[]
+    NOT?: AIPlanScalarWhereWithAggregatesInput | AIPlanScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIPlan"> | string
+    projectId?: StringWithAggregatesFilter<"AIPlan"> | string
+    prompt?: StringWithAggregatesFilter<"AIPlan"> | string
+    status?: StringWithAggregatesFilter<"AIPlan"> | string
+    generatedPlan?: JsonWithAggregatesFilter<"AIPlan">
+    createdBy?: StringWithAggregatesFilter<"AIPlan"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"AIPlan"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AIPlan"> | Date | string
+  }
+
+  export type AIPlanMessageWhereInput = {
+    AND?: AIPlanMessageWhereInput | AIPlanMessageWhereInput[]
+    OR?: AIPlanMessageWhereInput[]
+    NOT?: AIPlanMessageWhereInput | AIPlanMessageWhereInput[]
+    id?: StringFilter<"AIPlanMessage"> | string
+    planId?: StringFilter<"AIPlanMessage"> | string
+    role?: StringFilter<"AIPlanMessage"> | string
+    content?: StringFilter<"AIPlanMessage"> | string
+    createdAt?: DateTimeFilter<"AIPlanMessage"> | Date | string
+    plan?: XOR<AIPlanScalarRelationFilter, AIPlanWhereInput>
+  }
+
+  export type AIPlanMessageOrderByWithRelationInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    plan?: AIPlanOrderByWithRelationInput
+    _relevance?: AIPlanMessageOrderByRelevanceInput
+  }
+
+  export type AIPlanMessageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIPlanMessageWhereInput | AIPlanMessageWhereInput[]
+    OR?: AIPlanMessageWhereInput[]
+    NOT?: AIPlanMessageWhereInput | AIPlanMessageWhereInput[]
+    planId?: StringFilter<"AIPlanMessage"> | string
+    role?: StringFilter<"AIPlanMessage"> | string
+    content?: StringFilter<"AIPlanMessage"> | string
+    createdAt?: DateTimeFilter<"AIPlanMessage"> | Date | string
+    plan?: XOR<AIPlanScalarRelationFilter, AIPlanWhereInput>
+  }, "id">
+
+  export type AIPlanMessageOrderByWithAggregationInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    _count?: AIPlanMessageCountOrderByAggregateInput
+    _max?: AIPlanMessageMaxOrderByAggregateInput
+    _min?: AIPlanMessageMinOrderByAggregateInput
+  }
+
+  export type AIPlanMessageScalarWhereWithAggregatesInput = {
+    AND?: AIPlanMessageScalarWhereWithAggregatesInput | AIPlanMessageScalarWhereWithAggregatesInput[]
+    OR?: AIPlanMessageScalarWhereWithAggregatesInput[]
+    NOT?: AIPlanMessageScalarWhereWithAggregatesInput | AIPlanMessageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIPlanMessage"> | string
+    planId?: StringWithAggregatesFilter<"AIPlanMessage"> | string
+    role?: StringWithAggregatesFilter<"AIPlanMessage"> | string
+    content?: StringWithAggregatesFilter<"AIPlanMessage"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"AIPlanMessage"> | Date | string
+  }
+
+  export type AIPlanIterationWhereInput = {
+    AND?: AIPlanIterationWhereInput | AIPlanIterationWhereInput[]
+    OR?: AIPlanIterationWhereInput[]
+    NOT?: AIPlanIterationWhereInput | AIPlanIterationWhereInput[]
+    id?: StringFilter<"AIPlanIteration"> | string
+    planId?: StringFilter<"AIPlanIteration"> | string
+    iterationNum?: IntFilter<"AIPlanIteration"> | number
+    prompt?: StringFilter<"AIPlanIteration"> | string
+    generatedPlan?: JsonFilter<"AIPlanIteration">
+    createdAt?: DateTimeFilter<"AIPlanIteration"> | Date | string
+    plan?: XOR<AIPlanScalarRelationFilter, AIPlanWhereInput>
+  }
+
+  export type AIPlanIterationOrderByWithRelationInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    iterationNum?: SortOrder
+    prompt?: SortOrder
+    generatedPlan?: SortOrder
+    createdAt?: SortOrder
+    plan?: AIPlanOrderByWithRelationInput
+    _relevance?: AIPlanIterationOrderByRelevanceInput
+  }
+
+  export type AIPlanIterationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    planId_iterationNum?: AIPlanIterationPlanIdIterationNumCompoundUniqueInput
+    AND?: AIPlanIterationWhereInput | AIPlanIterationWhereInput[]
+    OR?: AIPlanIterationWhereInput[]
+    NOT?: AIPlanIterationWhereInput | AIPlanIterationWhereInput[]
+    planId?: StringFilter<"AIPlanIteration"> | string
+    iterationNum?: IntFilter<"AIPlanIteration"> | number
+    prompt?: StringFilter<"AIPlanIteration"> | string
+    generatedPlan?: JsonFilter<"AIPlanIteration">
+    createdAt?: DateTimeFilter<"AIPlanIteration"> | Date | string
+    plan?: XOR<AIPlanScalarRelationFilter, AIPlanWhereInput>
+  }, "id" | "planId_iterationNum">
+
+  export type AIPlanIterationOrderByWithAggregationInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    iterationNum?: SortOrder
+    prompt?: SortOrder
+    generatedPlan?: SortOrder
+    createdAt?: SortOrder
+    _count?: AIPlanIterationCountOrderByAggregateInput
+    _avg?: AIPlanIterationAvgOrderByAggregateInput
+    _max?: AIPlanIterationMaxOrderByAggregateInput
+    _min?: AIPlanIterationMinOrderByAggregateInput
+    _sum?: AIPlanIterationSumOrderByAggregateInput
+  }
+
+  export type AIPlanIterationScalarWhereWithAggregatesInput = {
+    AND?: AIPlanIterationScalarWhereWithAggregatesInput | AIPlanIterationScalarWhereWithAggregatesInput[]
+    OR?: AIPlanIterationScalarWhereWithAggregatesInput[]
+    NOT?: AIPlanIterationScalarWhereWithAggregatesInput | AIPlanIterationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIPlanIteration"> | string
+    planId?: StringWithAggregatesFilter<"AIPlanIteration"> | string
+    iterationNum?: IntWithAggregatesFilter<"AIPlanIteration"> | number
+    prompt?: StringWithAggregatesFilter<"AIPlanIteration"> | string
+    generatedPlan?: JsonWithAggregatesFilter<"AIPlanIteration">
+    createdAt?: DateTimeWithAggregatesFilter<"AIPlanIteration"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -7174,6 +10801,7 @@ export namespace Prisma {
     createdTasks?: TaskCreateNestedManyWithoutAuthorInput
     assignedTasks?: TaskCreateNestedManyWithoutAssigneesInput
     observedTasks?: TaskCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -7189,6 +10817,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAuthorInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssigneesInput
     observedTasks?: TaskUncheckedCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUpdateInput = {
@@ -7204,6 +10833,7 @@ export namespace Prisma {
     createdTasks?: TaskUpdateManyWithoutAuthorNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssigneesNestedInput
     observedTasks?: TaskUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -7219,6 +10849,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedUpdateManyWithoutAuthorNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssigneesNestedInput
     observedTasks?: TaskUncheckedUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -7378,6 +11009,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     team: TeamCreateNestedOneWithoutProjectsInput
     tasks?: TaskCreateNestedManyWithoutProjectInput
+    aiPlans?: AIPlanCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -7390,6 +11022,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    aiPlans?: AIPlanUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -7402,6 +11035,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     team?: TeamUpdateOneRequiredWithoutProjectsNestedInput
     tasks?: TaskUpdateManyWithoutProjectNestedInput
+    aiPlans?: AIPlanUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -7414,6 +11048,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    aiPlans?: AIPlanUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -7452,9 +11087,11 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -7471,12 +11108,14 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     authorId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     assignees?: UserUncheckedCreateNestedManyWithoutAssignedTasksInput
@@ -7493,6 +11132,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -7515,6 +11156,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignees?: UserUncheckedUpdateManyWithoutAssignedTasksNestedInput
@@ -7528,12 +11171,14 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     authorId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7545,6 +11190,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7559,8 +11206,210 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanCreateInput = {
+    id?: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutAiPlansInput
+    creator: UserCreateNestedOneWithoutAiPlansInput
+    conversations?: AIPlanMessageCreateNestedManyWithoutPlanInput
+    iterations?: AIPlanIterationCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanUncheckedCreateInput = {
+    id?: string
+    projectId: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    conversations?: AIPlanMessageUncheckedCreateNestedManyWithoutPlanInput
+    iterations?: AIPlanIterationUncheckedCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutAiPlansNestedInput
+    creator?: UserUpdateOneRequiredWithoutAiPlansNestedInput
+    conversations?: AIPlanMessageUpdateManyWithoutPlanNestedInput
+    iterations?: AIPlanIterationUpdateManyWithoutPlanNestedInput
+  }
+
+  export type AIPlanUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    conversations?: AIPlanMessageUncheckedUpdateManyWithoutPlanNestedInput
+    iterations?: AIPlanIterationUncheckedUpdateManyWithoutPlanNestedInput
+  }
+
+  export type AIPlanCreateManyInput = {
+    id?: string
+    projectId: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AIPlanUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanMessageCreateInput = {
+    id?: string
+    role: string
+    content: string
+    createdAt?: Date | string
+    plan: AIPlanCreateNestedOneWithoutConversationsInput
+  }
+
+  export type AIPlanMessageUncheckedCreateInput = {
+    id?: string
+    planId: string
+    role: string
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIPlanMessageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plan?: AIPlanUpdateOneRequiredWithoutConversationsNestedInput
+  }
+
+  export type AIPlanMessageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    planId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanMessageCreateManyInput = {
+    id?: string
+    planId: string
+    role: string
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIPlanMessageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanMessageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    planId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanIterationCreateInput = {
+    id?: string
+    iterationNum: number
+    prompt: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    plan: AIPlanCreateNestedOneWithoutIterationsInput
+  }
+
+  export type AIPlanIterationUncheckedCreateInput = {
+    id?: string
+    planId: string
+    iterationNum: number
+    prompt: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AIPlanIterationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    iterationNum?: IntFieldUpdateOperationsInput | number
+    prompt?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    plan?: AIPlanUpdateOneRequiredWithoutIterationsNestedInput
+  }
+
+  export type AIPlanIterationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    planId?: StringFieldUpdateOperationsInput | string
+    iterationNum?: IntFieldUpdateOperationsInput | number
+    prompt?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanIterationCreateManyInput = {
+    id?: string
+    planId: string
+    iterationNum: number
+    prompt: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AIPlanIterationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    iterationNum?: IntFieldUpdateOperationsInput | number
+    prompt?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanIterationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    planId?: StringFieldUpdateOperationsInput | string
+    iterationNum?: IntFieldUpdateOperationsInput | number
+    prompt?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -7607,6 +11456,12 @@ export namespace Prisma {
     none?: TaskWhereInput
   }
 
+  export type AIPlanListRelationFilter = {
+    every?: AIPlanWhereInput
+    some?: AIPlanWhereInput
+    none?: AIPlanWhereInput
+  }
+
   export type TeamOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -7616,6 +11471,10 @@ export namespace Prisma {
   }
 
   export type TaskOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AIPlanOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -7837,6 +11696,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type ProjectScalarRelationFilter = {
     is?: ProjectWhereInput
     isNot?: ProjectWhereInput
@@ -7883,6 +11753,8 @@ export namespace Prisma {
     priority?: SortOrder
     status?: SortOrder
     parentId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7901,6 +11773,8 @@ export namespace Prisma {
     priority?: SortOrder
     status?: SortOrder
     parentId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7915,6 +11789,8 @@ export namespace Prisma {
     priority?: SortOrder
     status?: SortOrder
     parentId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7957,6 +11833,205 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type AIPlanMessageListRelationFilter = {
+    every?: AIPlanMessageWhereInput
+    some?: AIPlanMessageWhereInput
+    none?: AIPlanMessageWhereInput
+  }
+
+  export type AIPlanIterationListRelationFilter = {
+    every?: AIPlanIterationWhereInput
+    some?: AIPlanIterationWhereInput
+    none?: AIPlanIterationWhereInput
+  }
+
+  export type AIPlanMessageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AIPlanIterationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AIPlanOrderByRelevanceInput = {
+    fields: AIPlanOrderByRelevanceFieldEnum | AIPlanOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AIPlanCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    prompt?: SortOrder
+    status?: SortOrder
+    generatedPlan?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AIPlanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    prompt?: SortOrder
+    status?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AIPlanMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    prompt?: SortOrder
+    status?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type AIPlanScalarRelationFilter = {
+    is?: AIPlanWhereInput
+    isNot?: AIPlanWhereInput
+  }
+
+  export type AIPlanMessageOrderByRelevanceInput = {
+    fields: AIPlanMessageOrderByRelevanceFieldEnum | AIPlanMessageOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AIPlanMessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AIPlanMessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AIPlanMessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AIPlanIterationOrderByRelevanceInput = {
+    fields: AIPlanIterationOrderByRelevanceFieldEnum | AIPlanIterationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AIPlanIterationPlanIdIterationNumCompoundUniqueInput = {
+    planId: string
+    iterationNum: number
+  }
+
+  export type AIPlanIterationCountOrderByAggregateInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    iterationNum?: SortOrder
+    prompt?: SortOrder
+    generatedPlan?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AIPlanIterationAvgOrderByAggregateInput = {
+    iterationNum?: SortOrder
+  }
+
+  export type AIPlanIterationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    iterationNum?: SortOrder
+    prompt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AIPlanIterationMinOrderByAggregateInput = {
+    id?: SortOrder
+    planId?: SortOrder
+    iterationNum?: SortOrder
+    prompt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AIPlanIterationSumOrderByAggregateInput = {
+    iterationNum?: SortOrder
+  }
+
   export type TeamCreateNestedManyWithoutLeadInput = {
     create?: XOR<TeamCreateWithoutLeadInput, TeamUncheckedCreateWithoutLeadInput> | TeamCreateWithoutLeadInput[] | TeamUncheckedCreateWithoutLeadInput[]
     connectOrCreate?: TeamCreateOrConnectWithoutLeadInput | TeamCreateOrConnectWithoutLeadInput[]
@@ -7990,6 +12065,13 @@ export namespace Prisma {
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
+  export type AIPlanCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<AIPlanCreateWithoutCreatorInput, AIPlanUncheckedCreateWithoutCreatorInput> | AIPlanCreateWithoutCreatorInput[] | AIPlanUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: AIPlanCreateOrConnectWithoutCreatorInput | AIPlanCreateOrConnectWithoutCreatorInput[]
+    createMany?: AIPlanCreateManyCreatorInputEnvelope
+    connect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+  }
+
   export type TeamUncheckedCreateNestedManyWithoutLeadInput = {
     create?: XOR<TeamCreateWithoutLeadInput, TeamUncheckedCreateWithoutLeadInput> | TeamCreateWithoutLeadInput[] | TeamUncheckedCreateWithoutLeadInput[]
     connectOrCreate?: TeamCreateOrConnectWithoutLeadInput | TeamCreateOrConnectWithoutLeadInput[]
@@ -8021,6 +12103,13 @@ export namespace Prisma {
     create?: XOR<TaskCreateWithoutObserversInput, TaskUncheckedCreateWithoutObserversInput> | TaskCreateWithoutObserversInput[] | TaskUncheckedCreateWithoutObserversInput[]
     connectOrCreate?: TaskCreateOrConnectWithoutObserversInput | TaskCreateOrConnectWithoutObserversInput[]
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type AIPlanUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<AIPlanCreateWithoutCreatorInput, AIPlanUncheckedCreateWithoutCreatorInput> | AIPlanCreateWithoutCreatorInput[] | AIPlanUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: AIPlanCreateOrConnectWithoutCreatorInput | AIPlanCreateOrConnectWithoutCreatorInput[]
+    createMany?: AIPlanCreateManyCreatorInputEnvelope
+    connect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -8099,6 +12188,20 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type AIPlanUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<AIPlanCreateWithoutCreatorInput, AIPlanUncheckedCreateWithoutCreatorInput> | AIPlanCreateWithoutCreatorInput[] | AIPlanUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: AIPlanCreateOrConnectWithoutCreatorInput | AIPlanCreateOrConnectWithoutCreatorInput[]
+    upsert?: AIPlanUpsertWithWhereUniqueWithoutCreatorInput | AIPlanUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: AIPlanCreateManyCreatorInputEnvelope
+    set?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    disconnect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    delete?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    connect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    update?: AIPlanUpdateWithWhereUniqueWithoutCreatorInput | AIPlanUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: AIPlanUpdateManyWithWhereWithoutCreatorInput | AIPlanUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: AIPlanScalarWhereInput | AIPlanScalarWhereInput[]
+  }
+
   export type TeamUncheckedUpdateManyWithoutLeadNestedInput = {
     create?: XOR<TeamCreateWithoutLeadInput, TeamUncheckedCreateWithoutLeadInput> | TeamCreateWithoutLeadInput[] | TeamUncheckedCreateWithoutLeadInput[]
     connectOrCreate?: TeamCreateOrConnectWithoutLeadInput | TeamCreateOrConnectWithoutLeadInput[]
@@ -8165,6 +12268,20 @@ export namespace Prisma {
     update?: TaskUpdateWithWhereUniqueWithoutObserversInput | TaskUpdateWithWhereUniqueWithoutObserversInput[]
     updateMany?: TaskUpdateManyWithWhereWithoutObserversInput | TaskUpdateManyWithWhereWithoutObserversInput[]
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type AIPlanUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<AIPlanCreateWithoutCreatorInput, AIPlanUncheckedCreateWithoutCreatorInput> | AIPlanCreateWithoutCreatorInput[] | AIPlanUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: AIPlanCreateOrConnectWithoutCreatorInput | AIPlanCreateOrConnectWithoutCreatorInput[]
+    upsert?: AIPlanUpsertWithWhereUniqueWithoutCreatorInput | AIPlanUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: AIPlanCreateManyCreatorInputEnvelope
+    set?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    disconnect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    delete?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    connect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    update?: AIPlanUpdateWithWhereUniqueWithoutCreatorInput | AIPlanUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: AIPlanUpdateManyWithWhereWithoutCreatorInput | AIPlanUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: AIPlanScalarWhereInput | AIPlanScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutLedTeamsInput = {
@@ -8306,11 +12423,25 @@ export namespace Prisma {
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
+  export type AIPlanCreateNestedManyWithoutProjectInput = {
+    create?: XOR<AIPlanCreateWithoutProjectInput, AIPlanUncheckedCreateWithoutProjectInput> | AIPlanCreateWithoutProjectInput[] | AIPlanUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: AIPlanCreateOrConnectWithoutProjectInput | AIPlanCreateOrConnectWithoutProjectInput[]
+    createMany?: AIPlanCreateManyProjectInputEnvelope
+    connect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+  }
+
   export type TaskUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<TaskCreateWithoutProjectInput, TaskUncheckedCreateWithoutProjectInput> | TaskCreateWithoutProjectInput[] | TaskUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: TaskCreateOrConnectWithoutProjectInput | TaskCreateOrConnectWithoutProjectInput[]
     createMany?: TaskCreateManyProjectInputEnvelope
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type AIPlanUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<AIPlanCreateWithoutProjectInput, AIPlanUncheckedCreateWithoutProjectInput> | AIPlanCreateWithoutProjectInput[] | AIPlanUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: AIPlanCreateOrConnectWithoutProjectInput | AIPlanCreateOrConnectWithoutProjectInput[]
+    createMany?: AIPlanCreateManyProjectInputEnvelope
+    connect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
   }
 
   export type TeamUpdateOneRequiredWithoutProjectsNestedInput = {
@@ -8335,6 +12466,20 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type AIPlanUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<AIPlanCreateWithoutProjectInput, AIPlanUncheckedCreateWithoutProjectInput> | AIPlanCreateWithoutProjectInput[] | AIPlanUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: AIPlanCreateOrConnectWithoutProjectInput | AIPlanCreateOrConnectWithoutProjectInput[]
+    upsert?: AIPlanUpsertWithWhereUniqueWithoutProjectInput | AIPlanUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: AIPlanCreateManyProjectInputEnvelope
+    set?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    disconnect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    delete?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    connect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    update?: AIPlanUpdateWithWhereUniqueWithoutProjectInput | AIPlanUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: AIPlanUpdateManyWithWhereWithoutProjectInput | AIPlanUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: AIPlanScalarWhereInput | AIPlanScalarWhereInput[]
+  }
+
   export type TaskUncheckedUpdateManyWithoutProjectNestedInput = {
     create?: XOR<TaskCreateWithoutProjectInput, TaskUncheckedCreateWithoutProjectInput> | TaskCreateWithoutProjectInput[] | TaskUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: TaskCreateOrConnectWithoutProjectInput | TaskCreateOrConnectWithoutProjectInput[]
@@ -8347,6 +12492,20 @@ export namespace Prisma {
     update?: TaskUpdateWithWhereUniqueWithoutProjectInput | TaskUpdateWithWhereUniqueWithoutProjectInput[]
     updateMany?: TaskUpdateManyWithWhereWithoutProjectInput | TaskUpdateManyWithWhereWithoutProjectInput[]
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type AIPlanUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<AIPlanCreateWithoutProjectInput, AIPlanUncheckedCreateWithoutProjectInput> | AIPlanCreateWithoutProjectInput[] | AIPlanUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: AIPlanCreateOrConnectWithoutProjectInput | AIPlanCreateOrConnectWithoutProjectInput[]
+    upsert?: AIPlanUpsertWithWhereUniqueWithoutProjectInput | AIPlanUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: AIPlanCreateManyProjectInputEnvelope
+    set?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    disconnect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    delete?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    connect?: AIPlanWhereUniqueInput | AIPlanWhereUniqueInput[]
+    update?: AIPlanUpdateWithWhereUniqueWithoutProjectInput | AIPlanUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: AIPlanUpdateManyWithWhereWithoutProjectInput | AIPlanUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: AIPlanScalarWhereInput | AIPlanScalarWhereInput[]
   }
 
   export type ProjectCreateNestedOneWithoutTasksInput = {
@@ -8435,6 +12594,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type ProjectUpdateOneRequiredWithoutTasksNestedInput = {
@@ -8599,6 +12762,146 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type ProjectCreateNestedOneWithoutAiPlansInput = {
+    create?: XOR<ProjectCreateWithoutAiPlansInput, ProjectUncheckedCreateWithoutAiPlansInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutAiPlansInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutAiPlansInput = {
+    create?: XOR<UserCreateWithoutAiPlansInput, UserUncheckedCreateWithoutAiPlansInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAiPlansInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type AIPlanMessageCreateNestedManyWithoutPlanInput = {
+    create?: XOR<AIPlanMessageCreateWithoutPlanInput, AIPlanMessageUncheckedCreateWithoutPlanInput> | AIPlanMessageCreateWithoutPlanInput[] | AIPlanMessageUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: AIPlanMessageCreateOrConnectWithoutPlanInput | AIPlanMessageCreateOrConnectWithoutPlanInput[]
+    createMany?: AIPlanMessageCreateManyPlanInputEnvelope
+    connect?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+  }
+
+  export type AIPlanIterationCreateNestedManyWithoutPlanInput = {
+    create?: XOR<AIPlanIterationCreateWithoutPlanInput, AIPlanIterationUncheckedCreateWithoutPlanInput> | AIPlanIterationCreateWithoutPlanInput[] | AIPlanIterationUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: AIPlanIterationCreateOrConnectWithoutPlanInput | AIPlanIterationCreateOrConnectWithoutPlanInput[]
+    createMany?: AIPlanIterationCreateManyPlanInputEnvelope
+    connect?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+  }
+
+  export type AIPlanMessageUncheckedCreateNestedManyWithoutPlanInput = {
+    create?: XOR<AIPlanMessageCreateWithoutPlanInput, AIPlanMessageUncheckedCreateWithoutPlanInput> | AIPlanMessageCreateWithoutPlanInput[] | AIPlanMessageUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: AIPlanMessageCreateOrConnectWithoutPlanInput | AIPlanMessageCreateOrConnectWithoutPlanInput[]
+    createMany?: AIPlanMessageCreateManyPlanInputEnvelope
+    connect?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+  }
+
+  export type AIPlanIterationUncheckedCreateNestedManyWithoutPlanInput = {
+    create?: XOR<AIPlanIterationCreateWithoutPlanInput, AIPlanIterationUncheckedCreateWithoutPlanInput> | AIPlanIterationCreateWithoutPlanInput[] | AIPlanIterationUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: AIPlanIterationCreateOrConnectWithoutPlanInput | AIPlanIterationCreateOrConnectWithoutPlanInput[]
+    createMany?: AIPlanIterationCreateManyPlanInputEnvelope
+    connect?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+  }
+
+  export type ProjectUpdateOneRequiredWithoutAiPlansNestedInput = {
+    create?: XOR<ProjectCreateWithoutAiPlansInput, ProjectUncheckedCreateWithoutAiPlansInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutAiPlansInput
+    upsert?: ProjectUpsertWithoutAiPlansInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutAiPlansInput, ProjectUpdateWithoutAiPlansInput>, ProjectUncheckedUpdateWithoutAiPlansInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutAiPlansNestedInput = {
+    create?: XOR<UserCreateWithoutAiPlansInput, UserUncheckedCreateWithoutAiPlansInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAiPlansInput
+    upsert?: UserUpsertWithoutAiPlansInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAiPlansInput, UserUpdateWithoutAiPlansInput>, UserUncheckedUpdateWithoutAiPlansInput>
+  }
+
+  export type AIPlanMessageUpdateManyWithoutPlanNestedInput = {
+    create?: XOR<AIPlanMessageCreateWithoutPlanInput, AIPlanMessageUncheckedCreateWithoutPlanInput> | AIPlanMessageCreateWithoutPlanInput[] | AIPlanMessageUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: AIPlanMessageCreateOrConnectWithoutPlanInput | AIPlanMessageCreateOrConnectWithoutPlanInput[]
+    upsert?: AIPlanMessageUpsertWithWhereUniqueWithoutPlanInput | AIPlanMessageUpsertWithWhereUniqueWithoutPlanInput[]
+    createMany?: AIPlanMessageCreateManyPlanInputEnvelope
+    set?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+    disconnect?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+    delete?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+    connect?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+    update?: AIPlanMessageUpdateWithWhereUniqueWithoutPlanInput | AIPlanMessageUpdateWithWhereUniqueWithoutPlanInput[]
+    updateMany?: AIPlanMessageUpdateManyWithWhereWithoutPlanInput | AIPlanMessageUpdateManyWithWhereWithoutPlanInput[]
+    deleteMany?: AIPlanMessageScalarWhereInput | AIPlanMessageScalarWhereInput[]
+  }
+
+  export type AIPlanIterationUpdateManyWithoutPlanNestedInput = {
+    create?: XOR<AIPlanIterationCreateWithoutPlanInput, AIPlanIterationUncheckedCreateWithoutPlanInput> | AIPlanIterationCreateWithoutPlanInput[] | AIPlanIterationUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: AIPlanIterationCreateOrConnectWithoutPlanInput | AIPlanIterationCreateOrConnectWithoutPlanInput[]
+    upsert?: AIPlanIterationUpsertWithWhereUniqueWithoutPlanInput | AIPlanIterationUpsertWithWhereUniqueWithoutPlanInput[]
+    createMany?: AIPlanIterationCreateManyPlanInputEnvelope
+    set?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+    disconnect?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+    delete?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+    connect?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+    update?: AIPlanIterationUpdateWithWhereUniqueWithoutPlanInput | AIPlanIterationUpdateWithWhereUniqueWithoutPlanInput[]
+    updateMany?: AIPlanIterationUpdateManyWithWhereWithoutPlanInput | AIPlanIterationUpdateManyWithWhereWithoutPlanInput[]
+    deleteMany?: AIPlanIterationScalarWhereInput | AIPlanIterationScalarWhereInput[]
+  }
+
+  export type AIPlanMessageUncheckedUpdateManyWithoutPlanNestedInput = {
+    create?: XOR<AIPlanMessageCreateWithoutPlanInput, AIPlanMessageUncheckedCreateWithoutPlanInput> | AIPlanMessageCreateWithoutPlanInput[] | AIPlanMessageUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: AIPlanMessageCreateOrConnectWithoutPlanInput | AIPlanMessageCreateOrConnectWithoutPlanInput[]
+    upsert?: AIPlanMessageUpsertWithWhereUniqueWithoutPlanInput | AIPlanMessageUpsertWithWhereUniqueWithoutPlanInput[]
+    createMany?: AIPlanMessageCreateManyPlanInputEnvelope
+    set?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+    disconnect?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+    delete?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+    connect?: AIPlanMessageWhereUniqueInput | AIPlanMessageWhereUniqueInput[]
+    update?: AIPlanMessageUpdateWithWhereUniqueWithoutPlanInput | AIPlanMessageUpdateWithWhereUniqueWithoutPlanInput[]
+    updateMany?: AIPlanMessageUpdateManyWithWhereWithoutPlanInput | AIPlanMessageUpdateManyWithWhereWithoutPlanInput[]
+    deleteMany?: AIPlanMessageScalarWhereInput | AIPlanMessageScalarWhereInput[]
+  }
+
+  export type AIPlanIterationUncheckedUpdateManyWithoutPlanNestedInput = {
+    create?: XOR<AIPlanIterationCreateWithoutPlanInput, AIPlanIterationUncheckedCreateWithoutPlanInput> | AIPlanIterationCreateWithoutPlanInput[] | AIPlanIterationUncheckedCreateWithoutPlanInput[]
+    connectOrCreate?: AIPlanIterationCreateOrConnectWithoutPlanInput | AIPlanIterationCreateOrConnectWithoutPlanInput[]
+    upsert?: AIPlanIterationUpsertWithWhereUniqueWithoutPlanInput | AIPlanIterationUpsertWithWhereUniqueWithoutPlanInput[]
+    createMany?: AIPlanIterationCreateManyPlanInputEnvelope
+    set?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+    disconnect?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+    delete?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+    connect?: AIPlanIterationWhereUniqueInput | AIPlanIterationWhereUniqueInput[]
+    update?: AIPlanIterationUpdateWithWhereUniqueWithoutPlanInput | AIPlanIterationUpdateWithWhereUniqueWithoutPlanInput[]
+    updateMany?: AIPlanIterationUpdateManyWithWhereWithoutPlanInput | AIPlanIterationUpdateManyWithWhereWithoutPlanInput[]
+    deleteMany?: AIPlanIterationScalarWhereInput | AIPlanIterationScalarWhereInput[]
+  }
+
+  export type AIPlanCreateNestedOneWithoutConversationsInput = {
+    create?: XOR<AIPlanCreateWithoutConversationsInput, AIPlanUncheckedCreateWithoutConversationsInput>
+    connectOrCreate?: AIPlanCreateOrConnectWithoutConversationsInput
+    connect?: AIPlanWhereUniqueInput
+  }
+
+  export type AIPlanUpdateOneRequiredWithoutConversationsNestedInput = {
+    create?: XOR<AIPlanCreateWithoutConversationsInput, AIPlanUncheckedCreateWithoutConversationsInput>
+    connectOrCreate?: AIPlanCreateOrConnectWithoutConversationsInput
+    upsert?: AIPlanUpsertWithoutConversationsInput
+    connect?: AIPlanWhereUniqueInput
+    update?: XOR<XOR<AIPlanUpdateToOneWithWhereWithoutConversationsInput, AIPlanUpdateWithoutConversationsInput>, AIPlanUncheckedUpdateWithoutConversationsInput>
+  }
+
+  export type AIPlanCreateNestedOneWithoutIterationsInput = {
+    create?: XOR<AIPlanCreateWithoutIterationsInput, AIPlanUncheckedCreateWithoutIterationsInput>
+    connectOrCreate?: AIPlanCreateOrConnectWithoutIterationsInput
+    connect?: AIPlanWhereUniqueInput
+  }
+
+  export type AIPlanUpdateOneRequiredWithoutIterationsNestedInput = {
+    create?: XOR<AIPlanCreateWithoutIterationsInput, AIPlanUncheckedCreateWithoutIterationsInput>
+    connectOrCreate?: AIPlanCreateOrConnectWithoutIterationsInput
+    upsert?: AIPlanUpsertWithoutIterationsInput
+    connect?: AIPlanWhereUniqueInput
+    update?: XOR<XOR<AIPlanUpdateToOneWithWhereWithoutIterationsInput, AIPlanUpdateWithoutIterationsInput>, AIPlanUncheckedUpdateWithoutIterationsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -8683,6 +12986,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -8737,6 +13051,43 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type TeamCreateWithoutLeadInput = {
@@ -8795,9 +13146,11 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -8813,11 +13166,13 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     assignees?: UserUncheckedCreateNestedManyWithoutAssignedTasksInput
@@ -8841,9 +13196,11 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -8859,12 +13216,14 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     authorId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     observers?: UserUncheckedCreateNestedManyWithoutObservedTasksInput
@@ -8882,9 +13241,11 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -8900,12 +13261,14 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     authorId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     assignees?: UserUncheckedCreateNestedManyWithoutAssignedTasksInput
@@ -8917,6 +13280,40 @@ export namespace Prisma {
   export type TaskCreateOrConnectWithoutObserversInput = {
     where: TaskWhereUniqueInput
     create: XOR<TaskCreateWithoutObserversInput, TaskUncheckedCreateWithoutObserversInput>
+  }
+
+  export type AIPlanCreateWithoutCreatorInput = {
+    id?: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutAiPlansInput
+    conversations?: AIPlanMessageCreateNestedManyWithoutPlanInput
+    iterations?: AIPlanIterationCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    projectId: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    conversations?: AIPlanMessageUncheckedCreateNestedManyWithoutPlanInput
+    iterations?: AIPlanIterationUncheckedCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanCreateOrConnectWithoutCreatorInput = {
+    where: AIPlanWhereUniqueInput
+    create: XOR<AIPlanCreateWithoutCreatorInput, AIPlanUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type AIPlanCreateManyCreatorInputEnvelope = {
+    data: AIPlanCreateManyCreatorInput | AIPlanCreateManyCreatorInput[]
+    skipDuplicates?: boolean
   }
 
   export type TeamUpsertWithWhereUniqueWithoutLeadInput = {
@@ -9002,6 +13399,8 @@ export namespace Prisma {
     priority?: StringFilter<"Task"> | string
     status?: StringFilter<"Task"> | string
     parentId?: StringNullableFilter<"Task"> | string | null
+    startDate?: DateTimeNullableFilter<"Task"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Task"> | Date | string | null
     createdAt?: DateTimeFilter<"Task"> | Date | string
     updatedAt?: DateTimeFilter<"Task"> | Date | string
   }
@@ -9038,6 +13437,36 @@ export namespace Prisma {
     data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutObserversInput>
   }
 
+  export type AIPlanUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: AIPlanWhereUniqueInput
+    update: XOR<AIPlanUpdateWithoutCreatorInput, AIPlanUncheckedUpdateWithoutCreatorInput>
+    create: XOR<AIPlanCreateWithoutCreatorInput, AIPlanUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type AIPlanUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: AIPlanWhereUniqueInput
+    data: XOR<AIPlanUpdateWithoutCreatorInput, AIPlanUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type AIPlanUpdateManyWithWhereWithoutCreatorInput = {
+    where: AIPlanScalarWhereInput
+    data: XOR<AIPlanUpdateManyMutationInput, AIPlanUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type AIPlanScalarWhereInput = {
+    AND?: AIPlanScalarWhereInput | AIPlanScalarWhereInput[]
+    OR?: AIPlanScalarWhereInput[]
+    NOT?: AIPlanScalarWhereInput | AIPlanScalarWhereInput[]
+    id?: StringFilter<"AIPlan"> | string
+    projectId?: StringFilter<"AIPlan"> | string
+    prompt?: StringFilter<"AIPlan"> | string
+    status?: StringFilter<"AIPlan"> | string
+    generatedPlan?: JsonFilter<"AIPlan">
+    createdBy?: StringFilter<"AIPlan"> | string
+    createdAt?: DateTimeFilter<"AIPlan"> | Date | string
+    updatedAt?: DateTimeFilter<"AIPlan"> | Date | string
+  }
+
   export type UserCreateWithoutLedTeamsInput = {
     id?: string
     email: string
@@ -9050,6 +13479,7 @@ export namespace Prisma {
     createdTasks?: TaskCreateNestedManyWithoutAuthorInput
     assignedTasks?: TaskCreateNestedManyWithoutAssigneesInput
     observedTasks?: TaskCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutLedTeamsInput = {
@@ -9064,6 +13494,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAuthorInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssigneesInput
     observedTasks?: TaskUncheckedCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutLedTeamsInput = {
@@ -9102,6 +13533,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskCreateNestedManyWithoutProjectInput
+    aiPlans?: AIPlanCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutTeamInput = {
@@ -9113,6 +13545,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    aiPlans?: AIPlanUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutTeamInput = {
@@ -9148,6 +13581,7 @@ export namespace Prisma {
     createdTasks?: TaskUpdateManyWithoutAuthorNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssigneesNestedInput
     observedTasks?: TaskUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLedTeamsInput = {
@@ -9162,6 +13596,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedUpdateManyWithoutAuthorNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssigneesNestedInput
     observedTasks?: TaskUncheckedUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type TeamMemberUpsertWithWhereUniqueWithoutTeamInput = {
@@ -9247,6 +13682,7 @@ export namespace Prisma {
     createdTasks?: TaskCreateNestedManyWithoutAuthorInput
     assignedTasks?: TaskCreateNestedManyWithoutAssigneesInput
     observedTasks?: TaskCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -9261,6 +13697,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAuthorInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssigneesInput
     observedTasks?: TaskUncheckedCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -9322,6 +13759,7 @@ export namespace Prisma {
     createdTasks?: TaskUpdateManyWithoutAuthorNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssigneesNestedInput
     observedTasks?: TaskUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -9336,6 +13774,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedUpdateManyWithoutAuthorNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssigneesNestedInput
     observedTasks?: TaskUncheckedUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type TeamCreateWithoutProjectsInput = {
@@ -9367,9 +13806,11 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     author: UserCreateNestedOneWithoutCreatedTasksInput
@@ -9385,11 +13826,13 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     authorId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     assignees?: UserUncheckedCreateNestedManyWithoutAssignedTasksInput
@@ -9406,6 +13849,40 @@ export namespace Prisma {
 
   export type TaskCreateManyProjectInputEnvelope = {
     data: TaskCreateManyProjectInput | TaskCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AIPlanCreateWithoutProjectInput = {
+    id?: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creator: UserCreateNestedOneWithoutAiPlansInput
+    conversations?: AIPlanMessageCreateNestedManyWithoutPlanInput
+    iterations?: AIPlanIterationCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanUncheckedCreateWithoutProjectInput = {
+    id?: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    conversations?: AIPlanMessageUncheckedCreateNestedManyWithoutPlanInput
+    iterations?: AIPlanIterationUncheckedCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanCreateOrConnectWithoutProjectInput = {
+    where: AIPlanWhereUniqueInput
+    create: XOR<AIPlanCreateWithoutProjectInput, AIPlanUncheckedCreateWithoutProjectInput>
+  }
+
+  export type AIPlanCreateManyProjectInputEnvelope = {
+    data: AIPlanCreateManyProjectInput | AIPlanCreateManyProjectInput[]
     skipDuplicates?: boolean
   }
 
@@ -9456,6 +13933,22 @@ export namespace Prisma {
     data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutProjectInput>
   }
 
+  export type AIPlanUpsertWithWhereUniqueWithoutProjectInput = {
+    where: AIPlanWhereUniqueInput
+    update: XOR<AIPlanUpdateWithoutProjectInput, AIPlanUncheckedUpdateWithoutProjectInput>
+    create: XOR<AIPlanCreateWithoutProjectInput, AIPlanUncheckedCreateWithoutProjectInput>
+  }
+
+  export type AIPlanUpdateWithWhereUniqueWithoutProjectInput = {
+    where: AIPlanWhereUniqueInput
+    data: XOR<AIPlanUpdateWithoutProjectInput, AIPlanUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type AIPlanUpdateManyWithWhereWithoutProjectInput = {
+    where: AIPlanScalarWhereInput
+    data: XOR<AIPlanUpdateManyMutationInput, AIPlanUncheckedUpdateManyWithoutProjectInput>
+  }
+
   export type ProjectCreateWithoutTasksInput = {
     id?: string
     name: string
@@ -9465,6 +13958,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     team: TeamCreateNestedOneWithoutProjectsInput
+    aiPlans?: AIPlanCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutTasksInput = {
@@ -9476,6 +13970,7 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    aiPlans?: AIPlanUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutTasksInput = {
@@ -9495,6 +13990,7 @@ export namespace Prisma {
     memberships?: TeamMemberCreateNestedManyWithoutUserInput
     assignedTasks?: TaskCreateNestedManyWithoutAssigneesInput
     observedTasks?: TaskCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutCreatedTasksInput = {
@@ -9509,6 +14005,7 @@ export namespace Prisma {
     memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssigneesInput
     observedTasks?: TaskUncheckedCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutCreatedTasksInput = {
@@ -9528,6 +14025,7 @@ export namespace Prisma {
     memberships?: TeamMemberCreateNestedManyWithoutUserInput
     createdTasks?: TaskCreateNestedManyWithoutAuthorInput
     observedTasks?: TaskCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutAssignedTasksInput = {
@@ -9542,6 +14040,7 @@ export namespace Prisma {
     memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAuthorInput
     observedTasks?: TaskUncheckedCreateNestedManyWithoutObserversInput
+    aiPlans?: AIPlanUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutAssignedTasksInput = {
@@ -9561,6 +14060,7 @@ export namespace Prisma {
     memberships?: TeamMemberCreateNestedManyWithoutUserInput
     createdTasks?: TaskCreateNestedManyWithoutAuthorInput
     assignedTasks?: TaskCreateNestedManyWithoutAssigneesInput
+    aiPlans?: AIPlanCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutObservedTasksInput = {
@@ -9575,6 +14075,7 @@ export namespace Prisma {
     memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAuthorInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssigneesInput
+    aiPlans?: AIPlanUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutObservedTasksInput = {
@@ -9586,9 +14087,11 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -9604,12 +14107,14 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     authorId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     assignees?: UserUncheckedCreateNestedManyWithoutAssignedTasksInput
@@ -9627,9 +14132,11 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -9645,11 +14152,13 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     authorId: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     assignees?: UserUncheckedCreateNestedManyWithoutAssignedTasksInput
@@ -9673,9 +14182,11 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -9691,12 +14202,14 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     authorId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     assignees?: UserUncheckedCreateNestedManyWithoutAssignedTasksInput
@@ -9714,9 +14227,11 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -9732,12 +14247,14 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     authorId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     assignees?: UserUncheckedCreateNestedManyWithoutAssignedTasksInput
@@ -9771,6 +14288,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     team?: TeamUpdateOneRequiredWithoutProjectsNestedInput
+    aiPlans?: AIPlanUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutTasksInput = {
@@ -9782,6 +14300,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    aiPlans?: AIPlanUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutCreatedTasksInput = {
@@ -9807,6 +14326,7 @@ export namespace Prisma {
     memberships?: TeamMemberUpdateManyWithoutUserNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssigneesNestedInput
     observedTasks?: TaskUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedTasksInput = {
@@ -9821,6 +14341,7 @@ export namespace Prisma {
     memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssigneesNestedInput
     observedTasks?: TaskUncheckedUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUpsertWithWhereUniqueWithoutAssignedTasksInput = {
@@ -9886,6 +14407,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -9907,6 +14430,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignees?: UserUncheckedUpdateManyWithoutAssignedTasksNestedInput
@@ -9963,6 +14488,379 @@ export namespace Prisma {
     data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutRelatedTasksInput>
   }
 
+  export type ProjectCreateWithoutAiPlansInput = {
+    id?: string
+    name: string
+    shortCode?: string
+    description?: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    team: TeamCreateNestedOneWithoutProjectsInput
+    tasks?: TaskCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutAiPlansInput = {
+    id?: string
+    name: string
+    shortCode?: string
+    description?: string
+    teamId: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutAiPlansInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutAiPlansInput, ProjectUncheckedCreateWithoutAiPlansInput>
+  }
+
+  export type UserCreateWithoutAiPlansInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ledTeams?: TeamCreateNestedManyWithoutLeadInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    createdTasks?: TaskCreateNestedManyWithoutAuthorInput
+    assignedTasks?: TaskCreateNestedManyWithoutAssigneesInput
+    observedTasks?: TaskCreateNestedManyWithoutObserversInput
+  }
+
+  export type UserUncheckedCreateWithoutAiPlansInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ledTeams?: TeamUncheckedCreateNestedManyWithoutLeadInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    createdTasks?: TaskUncheckedCreateNestedManyWithoutAuthorInput
+    assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssigneesInput
+    observedTasks?: TaskUncheckedCreateNestedManyWithoutObserversInput
+  }
+
+  export type UserCreateOrConnectWithoutAiPlansInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAiPlansInput, UserUncheckedCreateWithoutAiPlansInput>
+  }
+
+  export type AIPlanMessageCreateWithoutPlanInput = {
+    id?: string
+    role: string
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIPlanMessageUncheckedCreateWithoutPlanInput = {
+    id?: string
+    role: string
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIPlanMessageCreateOrConnectWithoutPlanInput = {
+    where: AIPlanMessageWhereUniqueInput
+    create: XOR<AIPlanMessageCreateWithoutPlanInput, AIPlanMessageUncheckedCreateWithoutPlanInput>
+  }
+
+  export type AIPlanMessageCreateManyPlanInputEnvelope = {
+    data: AIPlanMessageCreateManyPlanInput | AIPlanMessageCreateManyPlanInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AIPlanIterationCreateWithoutPlanInput = {
+    id?: string
+    iterationNum: number
+    prompt: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AIPlanIterationUncheckedCreateWithoutPlanInput = {
+    id?: string
+    iterationNum: number
+    prompt: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AIPlanIterationCreateOrConnectWithoutPlanInput = {
+    where: AIPlanIterationWhereUniqueInput
+    create: XOR<AIPlanIterationCreateWithoutPlanInput, AIPlanIterationUncheckedCreateWithoutPlanInput>
+  }
+
+  export type AIPlanIterationCreateManyPlanInputEnvelope = {
+    data: AIPlanIterationCreateManyPlanInput | AIPlanIterationCreateManyPlanInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectUpsertWithoutAiPlansInput = {
+    update: XOR<ProjectUpdateWithoutAiPlansInput, ProjectUncheckedUpdateWithoutAiPlansInput>
+    create: XOR<ProjectCreateWithoutAiPlansInput, ProjectUncheckedCreateWithoutAiPlansInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutAiPlansInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutAiPlansInput, ProjectUncheckedUpdateWithoutAiPlansInput>
+  }
+
+  export type ProjectUpdateWithoutAiPlansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    shortCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    team?: TeamUpdateOneRequiredWithoutProjectsNestedInput
+    tasks?: TaskUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutAiPlansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    shortCode?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    teamId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type UserUpsertWithoutAiPlansInput = {
+    update: XOR<UserUpdateWithoutAiPlansInput, UserUncheckedUpdateWithoutAiPlansInput>
+    create: XOR<UserCreateWithoutAiPlansInput, UserUncheckedCreateWithoutAiPlansInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAiPlansInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAiPlansInput, UserUncheckedUpdateWithoutAiPlansInput>
+  }
+
+  export type UserUpdateWithoutAiPlansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ledTeams?: TeamUpdateManyWithoutLeadNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    createdTasks?: TaskUpdateManyWithoutAuthorNestedInput
+    assignedTasks?: TaskUpdateManyWithoutAssigneesNestedInput
+    observedTasks?: TaskUpdateManyWithoutObserversNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAiPlansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ledTeams?: TeamUncheckedUpdateManyWithoutLeadNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    createdTasks?: TaskUncheckedUpdateManyWithoutAuthorNestedInput
+    assignedTasks?: TaskUncheckedUpdateManyWithoutAssigneesNestedInput
+    observedTasks?: TaskUncheckedUpdateManyWithoutObserversNestedInput
+  }
+
+  export type AIPlanMessageUpsertWithWhereUniqueWithoutPlanInput = {
+    where: AIPlanMessageWhereUniqueInput
+    update: XOR<AIPlanMessageUpdateWithoutPlanInput, AIPlanMessageUncheckedUpdateWithoutPlanInput>
+    create: XOR<AIPlanMessageCreateWithoutPlanInput, AIPlanMessageUncheckedCreateWithoutPlanInput>
+  }
+
+  export type AIPlanMessageUpdateWithWhereUniqueWithoutPlanInput = {
+    where: AIPlanMessageWhereUniqueInput
+    data: XOR<AIPlanMessageUpdateWithoutPlanInput, AIPlanMessageUncheckedUpdateWithoutPlanInput>
+  }
+
+  export type AIPlanMessageUpdateManyWithWhereWithoutPlanInput = {
+    where: AIPlanMessageScalarWhereInput
+    data: XOR<AIPlanMessageUpdateManyMutationInput, AIPlanMessageUncheckedUpdateManyWithoutPlanInput>
+  }
+
+  export type AIPlanMessageScalarWhereInput = {
+    AND?: AIPlanMessageScalarWhereInput | AIPlanMessageScalarWhereInput[]
+    OR?: AIPlanMessageScalarWhereInput[]
+    NOT?: AIPlanMessageScalarWhereInput | AIPlanMessageScalarWhereInput[]
+    id?: StringFilter<"AIPlanMessage"> | string
+    planId?: StringFilter<"AIPlanMessage"> | string
+    role?: StringFilter<"AIPlanMessage"> | string
+    content?: StringFilter<"AIPlanMessage"> | string
+    createdAt?: DateTimeFilter<"AIPlanMessage"> | Date | string
+  }
+
+  export type AIPlanIterationUpsertWithWhereUniqueWithoutPlanInput = {
+    where: AIPlanIterationWhereUniqueInput
+    update: XOR<AIPlanIterationUpdateWithoutPlanInput, AIPlanIterationUncheckedUpdateWithoutPlanInput>
+    create: XOR<AIPlanIterationCreateWithoutPlanInput, AIPlanIterationUncheckedCreateWithoutPlanInput>
+  }
+
+  export type AIPlanIterationUpdateWithWhereUniqueWithoutPlanInput = {
+    where: AIPlanIterationWhereUniqueInput
+    data: XOR<AIPlanIterationUpdateWithoutPlanInput, AIPlanIterationUncheckedUpdateWithoutPlanInput>
+  }
+
+  export type AIPlanIterationUpdateManyWithWhereWithoutPlanInput = {
+    where: AIPlanIterationScalarWhereInput
+    data: XOR<AIPlanIterationUpdateManyMutationInput, AIPlanIterationUncheckedUpdateManyWithoutPlanInput>
+  }
+
+  export type AIPlanIterationScalarWhereInput = {
+    AND?: AIPlanIterationScalarWhereInput | AIPlanIterationScalarWhereInput[]
+    OR?: AIPlanIterationScalarWhereInput[]
+    NOT?: AIPlanIterationScalarWhereInput | AIPlanIterationScalarWhereInput[]
+    id?: StringFilter<"AIPlanIteration"> | string
+    planId?: StringFilter<"AIPlanIteration"> | string
+    iterationNum?: IntFilter<"AIPlanIteration"> | number
+    prompt?: StringFilter<"AIPlanIteration"> | string
+    generatedPlan?: JsonFilter<"AIPlanIteration">
+    createdAt?: DateTimeFilter<"AIPlanIteration"> | Date | string
+  }
+
+  export type AIPlanCreateWithoutConversationsInput = {
+    id?: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutAiPlansInput
+    creator: UserCreateNestedOneWithoutAiPlansInput
+    iterations?: AIPlanIterationCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanUncheckedCreateWithoutConversationsInput = {
+    id?: string
+    projectId: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    iterations?: AIPlanIterationUncheckedCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanCreateOrConnectWithoutConversationsInput = {
+    where: AIPlanWhereUniqueInput
+    create: XOR<AIPlanCreateWithoutConversationsInput, AIPlanUncheckedCreateWithoutConversationsInput>
+  }
+
+  export type AIPlanUpsertWithoutConversationsInput = {
+    update: XOR<AIPlanUpdateWithoutConversationsInput, AIPlanUncheckedUpdateWithoutConversationsInput>
+    create: XOR<AIPlanCreateWithoutConversationsInput, AIPlanUncheckedCreateWithoutConversationsInput>
+    where?: AIPlanWhereInput
+  }
+
+  export type AIPlanUpdateToOneWithWhereWithoutConversationsInput = {
+    where?: AIPlanWhereInput
+    data: XOR<AIPlanUpdateWithoutConversationsInput, AIPlanUncheckedUpdateWithoutConversationsInput>
+  }
+
+  export type AIPlanUpdateWithoutConversationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutAiPlansNestedInput
+    creator?: UserUpdateOneRequiredWithoutAiPlansNestedInput
+    iterations?: AIPlanIterationUpdateManyWithoutPlanNestedInput
+  }
+
+  export type AIPlanUncheckedUpdateWithoutConversationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    iterations?: AIPlanIterationUncheckedUpdateManyWithoutPlanNestedInput
+  }
+
+  export type AIPlanCreateWithoutIterationsInput = {
+    id?: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutAiPlansInput
+    creator: UserCreateNestedOneWithoutAiPlansInput
+    conversations?: AIPlanMessageCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanUncheckedCreateWithoutIterationsInput = {
+    id?: string
+    projectId: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    conversations?: AIPlanMessageUncheckedCreateNestedManyWithoutPlanInput
+  }
+
+  export type AIPlanCreateOrConnectWithoutIterationsInput = {
+    where: AIPlanWhereUniqueInput
+    create: XOR<AIPlanCreateWithoutIterationsInput, AIPlanUncheckedCreateWithoutIterationsInput>
+  }
+
+  export type AIPlanUpsertWithoutIterationsInput = {
+    update: XOR<AIPlanUpdateWithoutIterationsInput, AIPlanUncheckedUpdateWithoutIterationsInput>
+    create: XOR<AIPlanCreateWithoutIterationsInput, AIPlanUncheckedCreateWithoutIterationsInput>
+    where?: AIPlanWhereInput
+  }
+
+  export type AIPlanUpdateToOneWithWhereWithoutIterationsInput = {
+    where?: AIPlanWhereInput
+    data: XOR<AIPlanUpdateWithoutIterationsInput, AIPlanUncheckedUpdateWithoutIterationsInput>
+  }
+
+  export type AIPlanUpdateWithoutIterationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutAiPlansNestedInput
+    creator?: UserUpdateOneRequiredWithoutAiPlansNestedInput
+    conversations?: AIPlanMessageUpdateManyWithoutPlanNestedInput
+  }
+
+  export type AIPlanUncheckedUpdateWithoutIterationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    conversations?: AIPlanMessageUncheckedUpdateManyWithoutPlanNestedInput
+  }
+
   export type TeamCreateManyLeadInput = {
     id?: string
     name: string
@@ -9981,11 +14879,23 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AIPlanCreateManyCreatorInput = {
+    id?: string
+    projectId: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10043,6 +14953,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -10063,6 +14975,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignees?: UserUncheckedUpdateManyWithoutAssignedTasksNestedInput
@@ -10081,6 +14995,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10092,6 +15008,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -10113,6 +15031,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     observers?: UserUncheckedUpdateManyWithoutObservedTasksNestedInput
@@ -10131,6 +15051,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10142,6 +15064,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -10163,6 +15087,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignees?: UserUncheckedUpdateManyWithoutAssignedTasksNestedInput
@@ -10181,6 +15107,42 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutAiPlansNestedInput
+    conversations?: AIPlanMessageUpdateManyWithoutPlanNestedInput
+    iterations?: AIPlanIterationUpdateManyWithoutPlanNestedInput
+  }
+
+  export type AIPlanUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    conversations?: AIPlanMessageUncheckedUpdateManyWithoutPlanNestedInput
+    iterations?: AIPlanIterationUncheckedUpdateManyWithoutPlanNestedInput
+  }
+
+  export type AIPlanUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10228,6 +15190,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUpdateManyWithoutProjectNestedInput
+    aiPlans?: AIPlanUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutTeamInput = {
@@ -10239,6 +15202,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    aiPlans?: AIPlanUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutTeamInput = {
@@ -10255,11 +15219,23 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     authorId: string
     priority?: string
     status?: string
     parentId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AIPlanCreateManyProjectInput = {
+    id?: string
+    prompt: string
+    status?: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdBy: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10271,6 +15247,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutCreatedTasksNestedInput
@@ -10291,6 +15269,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignees?: UserUncheckedUpdateManyWithoutAssignedTasksNestedInput
@@ -10309,6 +15289,42 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutAiPlansNestedInput
+    conversations?: AIPlanMessageUpdateManyWithoutPlanNestedInput
+    iterations?: AIPlanIterationUpdateManyWithoutPlanNestedInput
+  }
+
+  export type AIPlanUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    conversations?: AIPlanMessageUncheckedUpdateManyWithoutPlanNestedInput
+    iterations?: AIPlanIterationUncheckedUpdateManyWithoutPlanNestedInput
+  }
+
+  export type AIPlanUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10317,11 +15333,13 @@ export namespace Prisma {
     id?: string
     taskNumber: number
     title: string
-    description?: string
+    description: string
     projectId: string
     authorId: string
     priority?: string
     status?: string
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10338,6 +15356,7 @@ export namespace Prisma {
     memberships?: TeamMemberUpdateManyWithoutUserNestedInput
     createdTasks?: TaskUpdateManyWithoutAuthorNestedInput
     observedTasks?: TaskUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedTasksInput = {
@@ -10352,6 +15371,7 @@ export namespace Prisma {
     memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAuthorNestedInput
     observedTasks?: TaskUncheckedUpdateManyWithoutObserversNestedInput
+    aiPlans?: AIPlanUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutAssignedTasksInput = {
@@ -10376,6 +15396,7 @@ export namespace Prisma {
     memberships?: TeamMemberUpdateManyWithoutUserNestedInput
     createdTasks?: TaskUpdateManyWithoutAuthorNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssigneesNestedInput
+    aiPlans?: AIPlanUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutObservedTasksInput = {
@@ -10390,6 +15411,7 @@ export namespace Prisma {
     memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAuthorNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssigneesNestedInput
+    aiPlans?: AIPlanUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutObservedTasksInput = {
@@ -10409,6 +15431,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -10429,6 +15453,8 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignees?: UserUncheckedUpdateManyWithoutAssignedTasksNestedInput
@@ -10447,6 +15473,8 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10458,6 +15486,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -10479,6 +15509,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignees?: UserUncheckedUpdateManyWithoutAssignedTasksNestedInput
@@ -10497,6 +15529,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10508,6 +15542,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -10529,6 +15565,8 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignees?: UserUncheckedUpdateManyWithoutAssignedTasksNestedInput
@@ -10547,8 +15585,70 @@ export namespace Prisma {
     priority?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanMessageCreateManyPlanInput = {
+    id?: string
+    role: string
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIPlanIterationCreateManyPlanInput = {
+    id?: string
+    iterationNum: number
+    prompt: string
+    generatedPlan: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AIPlanMessageUpdateWithoutPlanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanMessageUncheckedUpdateWithoutPlanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanMessageUncheckedUpdateManyWithoutPlanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanIterationUpdateWithoutPlanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    iterationNum?: IntFieldUpdateOperationsInput | number
+    prompt?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanIterationUncheckedUpdateWithoutPlanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    iterationNum?: IntFieldUpdateOperationsInput | number
+    prompt?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIPlanIterationUncheckedUpdateManyWithoutPlanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    iterationNum?: IntFieldUpdateOperationsInput | number
+    prompt?: StringFieldUpdateOperationsInput | string
+    generatedPlan?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

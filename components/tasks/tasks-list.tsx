@@ -175,7 +175,7 @@ export function TasksList({
                 href={`/dashboard/teams/${teamId}/projects/${projectId}/tasks/${task.id}`}
                 className="block mb-2"
               >
-                <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline decoration-2 underline-offset-4">
+                <h3 className="text-xl font-bold text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition">
                   {projectShortCode}-{task.taskNumber}: {task.title}
                 </h3>
               </Link>

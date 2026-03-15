@@ -123,7 +123,7 @@ export async function POST(
 
     const { teamId, projectId } = await params;
     const body = await request.json();
-    const { title, description, priority, assigneeIds, observerIds, parentId, relatedTaskIds } = body;
+    const { title, description, priority, assigneeIds, observerIds, parentId, relatedTaskIds, startDate, endDate } = body;
 
     // Validate required fields
     if (!title || title.trim() === "") {
@@ -270,11 +270,13 @@ export async function POST(
       data: {
         title: title.trim(),
         taskNumber: nextTaskNumber,
-        description: description?.trim() || "",
+        description: description ? description.trim() : "",
         priority: priority || "medium",
         projectId,
         authorId: session.user.id,
         ...(parentId && { parentId }),
+        ...(startDate && { startDate: new Date(startDate) }),
+        ...(endDate && { endDate: new Date(endDate) }),
         ...(assigneeIds &&
           assigneeIds.length > 0 && {
             assignees: {

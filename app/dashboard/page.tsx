@@ -36,20 +36,20 @@ export default async function DashboardPage() {
           <div className="flex gap-6">
             <Link
               href="/dashboard"
-              className="border-b-2 border-foreground px-1 py-4 text-sm font-medium text-foreground"
+              className="border-b-2 border-indigo-500 px-1 py-4 text-sm font-medium text-indigo-600 dark:text-indigo-400"
             >
               Главная
             </Link>
             <Link
               href="/dashboard/teams"
-              className="border-b-2 border-transparent px-1 py-4 text-sm font-medium text-zinc-600 hover:border-zinc-300 hover:text-foreground dark:text-zinc-400"
+              className="border-b-2 border-transparent px-1 py-4 text-sm font-medium text-zinc-600 hover:border-indigo-300 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400"
             >
               Команды
             </Link>
             {role === "admin" && (
               <Link
                 href="/dashboard/admin"
-                className="border-b-2 border-transparent px-1 py-4 text-sm font-medium text-zinc-600 hover:border-zinc-300 hover:text-foreground dark:text-zinc-400"
+                className="border-b-2 border-transparent px-1 py-4 text-sm font-medium text-zinc-600 hover:border-indigo-300 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400"
               >
                 Администрирование
               </Link>

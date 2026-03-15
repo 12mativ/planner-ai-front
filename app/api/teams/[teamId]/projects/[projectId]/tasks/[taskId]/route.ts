@@ -130,7 +130,7 @@ export async function PATCH(
 
     const { teamId, projectId, taskId } = await params;
     const body = await request.json();
-    const { title, description, priority, status, assigneeIds, observerIds, parentId, relatedTaskIds } =
+    const { title, description, priority, status, assigneeIds, observerIds, parentId, relatedTaskIds, startDate, endDate } =
       body;
 
     // Validate priority if provided
@@ -322,6 +322,8 @@ export async function PATCH(
         ...(priority && { priority }),
         ...(status && { status }),
         ...(parentId !== undefined && { parentId: parentId || null }),
+        ...(startDate !== undefined && { startDate: startDate ? new Date(startDate) : null }),
+        ...(endDate !== undefined && { endDate: endDate ? new Date(endDate) : null }),
         ...(assigneeIds !== undefined && {
           assignees: {
             set: assigneeIds.map((id: string) => ({ id })),

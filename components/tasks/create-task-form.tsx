@@ -133,9 +133,9 @@ export function CreateTaskForm({
               setFormData({ ...formData, description: e.target.value })
             }
             placeholder="Введите описание задачи (необязательно)"
-            rows={3}
+            rows={5}
             disabled={isLoading}
-            className="resize-none max-h-40"
+            className="resize-none max-h-32 overflow-y-auto"
           />
         </div>
 

@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { TasksList } from "@/components/tasks/tasks-list";
+import { ProjectView } from "@/components/projects/project-view";
 
 interface PageProps {
   params: Promise<{ teamId: string; projectId: string }>;
@@ -131,6 +131,8 @@ export default async function ProjectPage({ params }: PageProps) {
   // Convert Date objects to strings for client components
   const tasks = project.tasks.map((task) => ({
     ...task,
+    startDate: task.startDate?.toISOString() || null,
+    endDate: task.endDate?.toISOString() || null,
     createdAt: task.createdAt.toISOString(),
     updatedAt: task.updatedAt.toISOString(),
   }));
@@ -281,27 +283,15 @@ export default async function ProjectPage({ params }: PageProps) {
         </div>
 
         {/* Tasks Section */}
-        <div className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-foreground">
-              Задачи проекта ({totalTasks})
-            </h2>
-            <Button asChild>
-              <Link href={`/dashboard/teams/${teamId}/projects/${projectId}/tasks/new`}>
-                + Создать задачу
-              </Link>
-            </Button>
-          </div>
-
-          <TasksList
-            tasks={tasks}
-            teamId={teamId}
-            projectId={projectId}
-            projectShortCode={project.shortCode}
-            currentUserId={userId}
-            canManage={canManage}
-          />
-        </div>
+        <ProjectView
+          tasks={tasks}
+          teamId={teamId}
+          projectId={projectId}
+          projectShortCode={project.shortCode}
+          currentUserId={userId}
+          canManage={canManage}
+          totalTasks={totalTasks}
+        />
       </div>
     </div>
   );

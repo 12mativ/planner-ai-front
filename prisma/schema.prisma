@@ -25,6 +25,7 @@ model User {
   createdTasks      Task[]       @relation("TaskAuthor")
   assignedTasks     Task[]       @relation("TaskAssignees")
   observedTasks     Task[]       @relation("TaskObservers")
+  aiPlans           AIPlan[]     @relation("AIPlanCreator")
 }
 
 model Team {
@@ -65,20 +66,23 @@ model Project {
   updatedAt   DateTime @updatedAt
 
   // Relations
-  team  Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  tasks Task[]
+  team    Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  tasks   Task[]
+  aiPlans AIPlan[]
 }
 
 model Task {
   id          String   @id @default(cuid())
   taskNumber  Int      // Sequential number within the project
   title       String
-  description String   @default("")
+  description String   @db.Text
   projectId   String
   authorId    String
   priority    String   @default("medium") // "low", "medium", "high", "critical"
   status      String   @default("todo") // "todo", "in_progress", "done"
   parentId    String?  // Optional parent task
+  startDate   DateTime? // Planned start date
+  endDate     DateTime? // Planned end date
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -95,4 +99,46 @@ model Task {
   relatedFrom   Task[]  @relation("RelatedTasks")
 
   @@unique([projectId, taskNumber])
+}
+
+model AIPlan {
+  id            String   @id @default(cuid())
+  projectId     String
+  prompt        String   @db.Text
+  status        String   @default("draft") // "draft", "approved", "rejected"
+  generatedPlan Json     // Structured plan from AI
+  createdBy     String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  project       Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  creator       User            @relation("AIPlanCreator", fields: [createdBy], references: [id], onDelete: Cascade)
+  conversations AIPlanMessage[]
+  iterations    AIPlanIteration[]
+}
+
+model AIPlanMessage {
+  id        String   @id @default(cuid())
+  planId    String
+  role      String   // "user", "assistant", "system"
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+
+  // Relations
+  plan AIPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+}
+
+model AIPlanIteration {
+  id            String   @id @default(cuid())
+  planId        String
+  iterationNum  Int
+  prompt        String   @db.Text
+  generatedPlan Json
+  createdAt     DateTime @default(now())
+
+  // Relations
+  plan AIPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+
+  @@unique([planId, iterationNum])
 }

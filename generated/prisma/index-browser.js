@@ -167,13 +167,47 @@ exports.Prisma.TaskScalarFieldEnum = {
   priority: 'priority',
   status: 'status',
   parentId: 'parentId',
+  startDate: 'startDate',
+  endDate: 'endDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AIPlanScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  prompt: 'prompt',
+  status: 'status',
+  generatedPlan: 'generatedPlan',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AIPlanMessageScalarFieldEnum = {
+  id: 'id',
+  planId: 'planId',
+  role: 'role',
+  content: 'content',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AIPlanIterationScalarFieldEnum = {
+  id: 'id',
+  planId: 'planId',
+  iterationNum: 'iterationNum',
+  prompt: 'prompt',
+  generatedPlan: 'generatedPlan',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
@@ -222,13 +256,48 @@ exports.Prisma.TaskOrderByRelevanceFieldEnum = {
   parentId: 'parentId'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.AIPlanOrderByRelevanceFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  prompt: 'prompt',
+  status: 'status',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.AIPlanMessageOrderByRelevanceFieldEnum = {
+  id: 'id',
+  planId: 'planId',
+  role: 'role',
+  content: 'content'
+};
+
+exports.Prisma.AIPlanIterationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  planId: 'planId',
+  prompt: 'prompt'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
   Team: 'Team',
   TeamMember: 'TeamMember',
   Project: 'Project',
-  Task: 'Task'
+  Task: 'Task',
+  AIPlan: 'AIPlan',
+  AIPlanMessage: 'AIPlanMessage',
+  AIPlanIteration: 'AIPlanIteration'
 };
 
 /**

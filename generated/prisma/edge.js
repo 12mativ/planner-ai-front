@@ -139,13 +139,47 @@ exports.Prisma.TaskScalarFieldEnum = {
   priority: 'priority',
   status: 'status',
   parentId: 'parentId',
+  startDate: 'startDate',
+  endDate: 'endDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AIPlanScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  prompt: 'prompt',
+  status: 'status',
+  generatedPlan: 'generatedPlan',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AIPlanMessageScalarFieldEnum = {
+  id: 'id',
+  planId: 'planId',
+  role: 'role',
+  content: 'content',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AIPlanIterationScalarFieldEnum = {
+  id: 'id',
+  planId: 'planId',
+  iterationNum: 'iterationNum',
+  prompt: 'prompt',
+  generatedPlan: 'generatedPlan',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
@@ -194,13 +228,48 @@ exports.Prisma.TaskOrderByRelevanceFieldEnum = {
   parentId: 'parentId'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.AIPlanOrderByRelevanceFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  prompt: 'prompt',
+  status: 'status',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.AIPlanMessageOrderByRelevanceFieldEnum = {
+  id: 'id',
+  planId: 'planId',
+  role: 'role',
+  content: 'content'
+};
+
+exports.Prisma.AIPlanIterationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  planId: 'planId',
+  prompt: 'prompt'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
   Team: 'Team',
   TeamMember: 'TeamMember',
   Project: 'Project',
-  Task: 'Task'
+  Task: 'Task',
+  AIPlan: 'AIPlan',
+  AIPlanMessage: 'AIPlanMessage',
+  AIPlanIteration: 'AIPlanIteration'
 };
 /**
  * Create the Client
@@ -210,10 +279,10 @@ const config = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "mysql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  password  String\n  name      String\n  role      String   @default(\"user\") // \"admin\", \"team_lead\", \"user\"\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relations\n  ledTeams      Team[]       @relation(\"TeamLead\")\n  memberships   TeamMember[]\n  createdTasks  Task[]       @relation(\"TaskAuthor\")\n  assignedTasks Task[]       @relation(\"TaskAssignees\")\n  observedTasks Task[]       @relation(\"TaskObservers\")\n}\n\nmodel Team {\n  id          String   @id @default(cuid())\n  name        String\n  description String   @default(\"\")\n  leadId      String\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relations\n  lead     User         @relation(\"TeamLead\", fields: [leadId], references: [id], onDelete: Cascade)\n  members  TeamMember[]\n  projects Project[]\n}\n\nmodel TeamMember {\n  id        String   @id @default(cuid())\n  teamId    String\n  userId    String\n  createdAt DateTime @default(now())\n\n  // Relations\n  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([teamId, userId])\n}\n\nmodel Project {\n  id          String   @id @default(cuid())\n  name        String\n  shortCode   String   @default(\"PROJ\") // Short code like \"PROJ\" for task prefixes\n  description String   @default(\"\")\n  teamId      String\n  status      String   @default(\"active\") // \"active\", \"completed\", \"archived\"\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relations\n  team  Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)\n  tasks Task[]\n}\n\nmodel Task {\n  id          String   @id @default(cuid())\n  taskNumber  Int // Sequential number within the project\n  title       String\n  description String   @default(\"\")\n  projectId   String\n  authorId    String\n  priority    String   @default(\"medium\") // \"low\", \"medium\", \"high\", \"critical\"\n  status      String   @default(\"todo\") // \"todo\", \"in_progress\", \"done\"\n  parentId    String? // Optional parent task\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relations\n  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)\n  author    User    @relation(\"TaskAuthor\", fields: [authorId], references: [id], onDelete: Cascade)\n  assignees User[]  @relation(\"TaskAssignees\")\n  observers User[]  @relation(\"TaskObservers\")\n\n  // Task relationships\n  parent       Task?  @relation(\"TaskHierarchy\", fields: [parentId], references: [id], onDelete: SetNull)\n  subtasks     Task[] @relation(\"TaskHierarchy\")\n  relatedTasks Task[] @relation(\"RelatedTasks\")\n  relatedFrom  Task[] @relation(\"RelatedTasks\")\n\n  @@unique([projectId, taskNumber])\n}\n"
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  password  String\n  name      String\n  role      String   @default(\"user\") // \"admin\", \"team_lead\", \"user\"\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relations\n  ledTeams      Team[]       @relation(\"TeamLead\")\n  memberships   TeamMember[]\n  createdTasks  Task[]       @relation(\"TaskAuthor\")\n  assignedTasks Task[]       @relation(\"TaskAssignees\")\n  observedTasks Task[]       @relation(\"TaskObservers\")\n  aiPlans       AIPlan[]     @relation(\"AIPlanCreator\")\n}\n\nmodel Team {\n  id          String   @id @default(cuid())\n  name        String\n  description String   @default(\"\")\n  leadId      String\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relations\n  lead     User         @relation(\"TeamLead\", fields: [leadId], references: [id], onDelete: Cascade)\n  members  TeamMember[]\n  projects Project[]\n}\n\nmodel TeamMember {\n  id        String   @id @default(cuid())\n  teamId    String\n  userId    String\n  createdAt DateTime @default(now())\n\n  // Relations\n  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([teamId, userId])\n}\n\nmodel Project {\n  id          String   @id @default(cuid())\n  name        String\n  shortCode   String   @default(\"PROJ\") // Short code like \"PROJ\" for task prefixes\n  description String   @default(\"\")\n  teamId      String\n  status      String   @default(\"active\") // \"active\", \"completed\", \"archived\"\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relations\n  team    Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)\n  tasks   Task[]\n  aiPlans AIPlan[]\n}\n\nmodel Task {\n  id          String    @id @default(cuid())\n  taskNumber  Int // Sequential number within the project\n  title       String\n  description String    @db.Text\n  projectId   String\n  authorId    String\n  priority    String    @default(\"medium\") // \"low\", \"medium\", \"high\", \"critical\"\n  status      String    @default(\"todo\") // \"todo\", \"in_progress\", \"done\"\n  parentId    String? // Optional parent task\n  startDate   DateTime? // Planned start date\n  endDate     DateTime? // Planned end date\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime  @updatedAt\n\n  // Relations\n  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)\n  author    User    @relation(\"TaskAuthor\", fields: [authorId], references: [id], onDelete: Cascade)\n  assignees User[]  @relation(\"TaskAssignees\")\n  observers User[]  @relation(\"TaskObservers\")\n\n  // Task relationships\n  parent       Task?  @relation(\"TaskHierarchy\", fields: [parentId], references: [id], onDelete: SetNull)\n  subtasks     Task[] @relation(\"TaskHierarchy\")\n  relatedTasks Task[] @relation(\"RelatedTasks\")\n  relatedFrom  Task[] @relation(\"RelatedTasks\")\n\n  @@unique([projectId, taskNumber])\n}\n\nmodel AIPlan {\n  id            String   @id @default(cuid())\n  projectId     String\n  prompt        String   @db.Text\n  status        String   @default(\"draft\") // \"draft\", \"approved\", \"rejected\"\n  generatedPlan Json // Structured plan from AI\n  createdBy     String\n  createdAt     DateTime @default(now())\n  updatedAt     DateTime @updatedAt\n\n  // Relations\n  project       Project           @relation(fields: [projectId], references: [id], onDelete: Cascade)\n  creator       User              @relation(\"AIPlanCreator\", fields: [createdBy], references: [id], onDelete: Cascade)\n  conversations AIPlanMessage[]\n  iterations    AIPlanIteration[]\n}\n\nmodel AIPlanMessage {\n  id        String   @id @default(cuid())\n  planId    String\n  role      String // \"user\", \"assistant\", \"system\"\n  content   String   @db.Text\n  createdAt DateTime @default(now())\n\n  // Relations\n  plan AIPlan @relation(fields: [planId], references: [id], onDelete: Cascade)\n}\n\nmodel AIPlanIteration {\n  id            String   @id @default(cuid())\n  planId        String\n  iterationNum  Int\n  prompt        String   @db.Text\n  generatedPlan Json\n  createdAt     DateTime @default(now())\n\n  // Relations\n  plan AIPlan @relation(fields: [planId], references: [id], onDelete: Cascade)\n\n  @@unique([planId, iterationNum])\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ledTeams\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"TeamLead\"},{\"name\":\"memberships\",\"kind\":\"object\",\"type\":\"TeamMember\",\"relationName\":\"TeamMemberToUser\"},{\"name\":\"createdTasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskAuthor\"},{\"name\":\"assignedTasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskAssignees\"},{\"name\":\"observedTasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskObservers\"}],\"dbName\":null},\"Team\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"leadId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"lead\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TeamLead\"},{\"name\":\"members\",\"kind\":\"object\",\"type\":\"TeamMember\",\"relationName\":\"TeamToTeamMember\"},{\"name\":\"projects\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"ProjectToTeam\"}],\"dbName\":null},\"TeamMember\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"TeamToTeamMember\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TeamMemberToUser\"}],\"dbName\":null},\"Project\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shortCode\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"ProjectToTeam\"},{\"name\":\"tasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"ProjectToTask\"}],\"dbName\":null},\"Task\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"taskNumber\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"projectId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"priority\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"parentId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"project\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"ProjectToTask\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TaskAuthor\"},{\"name\":\"assignees\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TaskAssignees\"},{\"name\":\"observers\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TaskObservers\"},{\"name\":\"parent\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskHierarchy\"},{\"name\":\"subtasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskHierarchy\"},{\"name\":\"relatedTasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"RelatedTasks\"},{\"name\":\"relatedFrom\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"RelatedTasks\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"ledTeams\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"TeamLead\"},{\"name\":\"memberships\",\"kind\":\"object\",\"type\":\"TeamMember\",\"relationName\":\"TeamMemberToUser\"},{\"name\":\"createdTasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskAuthor\"},{\"name\":\"assignedTasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskAssignees\"},{\"name\":\"observedTasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskObservers\"},{\"name\":\"aiPlans\",\"kind\":\"object\",\"type\":\"AIPlan\",\"relationName\":\"AIPlanCreator\"}],\"dbName\":null},\"Team\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"leadId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"lead\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TeamLead\"},{\"name\":\"members\",\"kind\":\"object\",\"type\":\"TeamMember\",\"relationName\":\"TeamToTeamMember\"},{\"name\":\"projects\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"ProjectToTeam\"}],\"dbName\":null},\"TeamMember\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"TeamToTeamMember\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TeamMemberToUser\"}],\"dbName\":null},\"Project\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"shortCode\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"ProjectToTeam\"},{\"name\":\"tasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"ProjectToTask\"},{\"name\":\"aiPlans\",\"kind\":\"object\",\"type\":\"AIPlan\",\"relationName\":\"AIPlanToProject\"}],\"dbName\":null},\"Task\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"taskNumber\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"projectId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"priority\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"parentId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"startDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"endDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"project\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"ProjectToTask\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TaskAuthor\"},{\"name\":\"assignees\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TaskAssignees\"},{\"name\":\"observers\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TaskObservers\"},{\"name\":\"parent\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskHierarchy\"},{\"name\":\"subtasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"TaskHierarchy\"},{\"name\":\"relatedTasks\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"RelatedTasks\"},{\"name\":\"relatedFrom\",\"kind\":\"object\",\"type\":\"Task\",\"relationName\":\"RelatedTasks\"}],\"dbName\":null},\"AIPlan\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"projectId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"prompt\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"generatedPlan\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"createdBy\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"project\",\"kind\":\"object\",\"type\":\"Project\",\"relationName\":\"AIPlanToProject\"},{\"name\":\"creator\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AIPlanCreator\"},{\"name\":\"conversations\",\"kind\":\"object\",\"type\":\"AIPlanMessage\",\"relationName\":\"AIPlanToAIPlanMessage\"},{\"name\":\"iterations\",\"kind\":\"object\",\"type\":\"AIPlanIteration\",\"relationName\":\"AIPlanToAIPlanIteration\"}],\"dbName\":null},\"AIPlanMessage\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"planId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"plan\",\"kind\":\"object\",\"type\":\"AIPlan\",\"relationName\":\"AIPlanToAIPlanMessage\"}],\"dbName\":null},\"AIPlanIteration\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"planId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"iterationNum\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"prompt\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"generatedPlan\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"plan\",\"kind\":\"object\",\"type\":\"AIPlan\",\"relationName\":\"AIPlanToAIPlanIteration\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.compilerWasm = {
   getRuntime: async () => require('./query_compiler_bg.js'),

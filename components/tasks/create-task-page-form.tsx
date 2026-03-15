@@ -51,6 +51,8 @@ export function CreateTaskPageForm({
     observerIds: [] as string[],
     parentId: "" as string | undefined,
     relatedTaskIds: [] as string[],
+    startDate: "",
+    endDate: "",
   });
 
   // Format tasks for select options
@@ -130,9 +132,9 @@ export function CreateTaskPageForm({
               setFormData({ ...formData, description: e.target.value })
             }
             placeholder="Введите описание задачи (необязательно)"
-            rows={6}
+            rows={8}
             disabled={isLoading}
-            className="max-h-96 resize-y"
+            className="resize-none max-h-60 overflow-y-auto"
           />
         </div>
 
@@ -203,6 +205,45 @@ export function CreateTaskPageForm({
               <SelectItem value="critical">Критический</SelectItem>
             </SelectContent>
           </Select>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label
+              htmlFor="startDate"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
+              Дата начала
+            </label>
+            <Input
+              id="startDate"
+              type="date"
+              value={formData.startDate}
+              onChange={(e) =>
+                setFormData({ ...formData, startDate: e.target.value })
+              }
+              disabled={isLoading}
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="endDate"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
+              Дата окончания
+            </label>
+            <Input
+              id="endDate"
+              type="date"
+              value={formData.endDate}
+              onChange={(e) =>
+                setFormData({ ...formData, endDate: e.target.value })
+              }
+              disabled={isLoading}
+              min={formData.startDate || undefined}
+            />
+          </div>
         </div>
 
         <div>

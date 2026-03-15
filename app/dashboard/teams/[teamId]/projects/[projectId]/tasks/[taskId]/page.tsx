@@ -47,6 +47,11 @@ export default async function TaskPage({ params }: PageProps) {
           id: true,
           taskNumber: true,
           title: true,
+          project: {
+            select: {
+              shortCode: true,
+            },
+          },
         },
       },
       subtasks: {
@@ -55,6 +60,11 @@ export default async function TaskPage({ params }: PageProps) {
           taskNumber: true,
           title: true,
           status: true,
+          project: {
+            select: {
+              shortCode: true,
+            },
+          },
         },
       },
       relatedTasks: {
@@ -62,6 +72,11 @@ export default async function TaskPage({ params }: PageProps) {
           id: true,
           taskNumber: true,
           title: true,
+          project: {
+            select: {
+              shortCode: true,
+            },
+          },
         },
       },
       project: {

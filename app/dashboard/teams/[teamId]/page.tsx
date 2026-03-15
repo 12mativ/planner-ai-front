@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ROLE_NAMES } from "@/types/roles";
 import { prisma } from "@/lib/prisma";
-import { CreateProjectForm } from "@/components/projects/create-project-form";
 import { ProjectsList } from "@/components/projects/projects-list";
 
 interface PageProps {
@@ -243,13 +242,14 @@ export default async function TeamViewPage({ params }: PageProps) {
             <h2 className="text-xl font-semibold text-foreground">
               Проекты команды ({projects.length})
             </h2>
+            {canManage && (
+              <Button asChild>
+                <Link href={`/dashboard/teams/${teamId}/projects/new`}>
+                  + Создать проект
+                </Link>
+              </Button>
+            )}
           </div>
-
-          {canManage && (
-            <div className="mb-6">
-              <CreateProjectForm teamId={teamId} />
-            </div>
-          )}
 
           <ProjectsList projects={projects} teamId={teamId} canManage={canManage} />
         </div>

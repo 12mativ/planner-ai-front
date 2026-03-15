@@ -3,50 +3,58 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { use } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
-export default function NewTeamPage() {
+export default function NewProjectPage({
+  params,
+}: {
+  params: Promise<{ teamId: string }>;
+}) {
+  const resolvedParams = use(params);
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    shortCode: "",
+    description: "",
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name.trim()) {
-      toast.error("Название команды обязательно");
+    if (!formData.name.trim() || !formData.shortCode.trim()) {
+      toast.error("Название и короткий код обязательны");
       return;
     }
 
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/teams", {
+      const response = await fetch(`/api/teams/${resolvedParams.teamId}/projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, description }),
+        body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        toast.error(data.error || "Ошибка при создании команды");
+        toast.error(data.error || "Ошибка при создании проекта");
         return;
       }
 
-      toast.success("Команда успешно создана!");
-      // Redirect to teams list after successful creation
-      router.push("/dashboard/teams");
+      toast.success("Проект успешно создан!");
+      router.push(`/dashboard/teams/${resolvedParams.teamId}`);
       router.refresh();
     } catch (error) {
-      console.error("Create team error:", error);
-      toast.error("Произошла ошибка при создании команды");
+      console.error("Create project error:", error);
+      toast.error("Произошла ошибка при создании проекта");
     } finally {
       setIsLoading(false);
     }
@@ -58,15 +66,15 @@ export default function NewTeamPage() {
         {/* Header */}
         <div>
           <Button variant="link" className="text-zinc-600 dark:text-zinc-400 p-0" asChild>
-            <Link href="/dashboard/teams">
-              ← Назад к командам
+            <Link href={`/dashboard/teams/${resolvedParams.teamId}`}>
+              ← Назад к команде
             </Link>
           </Button>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground">
-            Создать команду
+            Создать проект
           </h1>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            Создайте новую команду и добавьте участников
+            Создайте новый проект для вашей команды
           </p>
         </div>
 
@@ -78,18 +86,41 @@ export default function NewTeamPage() {
                 htmlFor="name"
                 className="block text-sm font-medium text-foreground"
               >
-                Название команды *
+                Название проекта *
               </label>
               <Input
                 id="name"
                 name="name"
                 type="text"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Например: Команда разработки"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="Например: Разработка веб-приложения"
                 className="mt-1"
               />
+            </div>
+
+            <div>
+              <label
+                htmlFor="shortCode"
+                className="block text-sm font-medium text-foreground"
+              >
+                Короткий код *
+              </label>
+              <Input
+                id="shortCode"
+                name="shortCode"
+                type="text"
+                required
+                value={formData.shortCode}
+                onChange={(e) => setFormData({ ...formData, shortCode: e.target.value.toUpperCase() })}
+                placeholder="PROJ"
+                maxLength={10}
+                className="mt-1 uppercase"
+              />
+              <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">
+                Используется как префикс для задач (например, PROJ-1)
+              </p>
             </div>
 
             <div>
@@ -103,9 +134,9 @@ export default function NewTeamPage() {
                 id="description"
                 name="description"
                 rows={6}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Краткое описание команды и её целей"
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                placeholder="Краткое описание проекта и его целей"
                 className="mt-1 resize-none max-h-40 overflow-y-auto"
               />
             </div>
@@ -118,7 +149,7 @@ export default function NewTeamPage() {
               className="flex-1"
               size="lg"
             >
-              {isLoading ? "Создание..." : "Создать команду"}
+              {isLoading ? "Создание..." : "Создать проект"}
             </Button>
             <Button
               type="button"
@@ -127,7 +158,7 @@ export default function NewTeamPage() {
               size="lg"
               asChild
             >
-              <Link href="/dashboard/teams">
+              <Link href={`/dashboard/teams/${resolvedParams.teamId}`}>
                 Отмена
               </Link>
             </Button>

@@ -44,7 +44,9 @@ export function CreateProjectForm({ teamId, onSuccess }: CreateProjectFormProps)
       toast.success("Проект успешно создан");
       setFormData({ name: "", shortCode: "", description: "" });
       setIsOpen(false);
-      router.refresh();
+
+      // Redirect to the newly created project page
+      router.push(`/dashboard/teams/${teamId}/projects/${data.project.id}`);
       onSuccess?.();
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Ошибка при создании проекта");
