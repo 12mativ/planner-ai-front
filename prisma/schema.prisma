@@ -31,7 +31,7 @@ model User {
 model Team {
   id          String   @id @default(cuid())
   name        String
-  description String   @default("")
+  description String   @db.Text
   leadId      String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -59,7 +59,7 @@ model Project {
   id          String   @id @default(cuid())
   name        String
   shortCode   String   @default("PROJ") // Short code like "PROJ" for task prefixes
-  description String   @default("")
+  description String   @db.Text
   teamId      String
   status      String   @default("active") // "active", "completed", "archived"
   createdAt   DateTime @default(now())

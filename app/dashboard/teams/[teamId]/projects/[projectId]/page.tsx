@@ -182,11 +182,18 @@ export default async function ProjectPage({ params }: PageProps) {
             <Link href={`/dashboard/teams/${teamId}`}>← Назад к команде</Link>
           </Button>
           <div className="mt-4">
-            <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-4xl font-bold tracking-tight text-foreground">
-                {project.name}
-              </h1>
-              {getStatusBadge(project.status)}
+            <div className="flex items-center justify-between gap-3 mb-2">
+              <div className="flex items-center gap-3">
+                <h1 className="text-4xl font-bold tracking-tight text-foreground">
+                  {project.name}
+                </h1>
+                {getStatusBadge(project.status)}
+              </div>
+              <Button variant="outline" asChild>
+                <Link href={`/dashboard/teams/${teamId}/projects/${projectId}/kanban`}>
+                  Канбан-доска
+                </Link>
+              </Button>
             </div>
             {project.description && (
               <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-400">
@@ -212,7 +219,7 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
             <div>
               <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                Тимлид:
+                Руководитель:
               </span>
               <p className="mt-1 text-base font-medium text-foreground">
                 {project.team.lead.name}

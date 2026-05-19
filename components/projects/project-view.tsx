@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TasksList } from "@/components/tasks/tasks-list";
 import { GanttChart } from "@/components/tasks/gantt-chart";
+import { AiAssignDialog } from "@/components/tasks/ai-assign-dialog";
 import Link from "next/link";
 
 interface User {
@@ -82,11 +83,14 @@ export function ProjectView({
         </div>
         <div className="flex gap-3">
           {canManage && (
-            <Button variant="outline" asChild>
-              <Link href={`/dashboard/teams/${teamId}/projects/${projectId}/ai-planner`}>
-                🤖 AI Планировщик
-              </Link>
-            </Button>
+            <>
+              <Button variant="outline" asChild>
+                <Link href={`/dashboard/teams/${teamId}/projects/${projectId}/ai-planner`}>
+                  AI Планировщик
+                </Link>
+              </Button>
+              <AiAssignDialog teamId={teamId} projectId={projectId} tasks={tasks} />
+            </>
           )}
           <Button asChild>
             <Link href={`/dashboard/teams/${teamId}/projects/${projectId}/tasks/new`}>

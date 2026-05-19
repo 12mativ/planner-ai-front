@@ -36,13 +36,21 @@ interface GeneratedPlan {
 // Python backend URL
 const AI_PLANNER_BASE_URL = process.env.AI_PLANNER_URL || "http://127.0.0.1:5000";
 
+export interface ExistingTask {
+  title: string;
+  description: string;
+  priority: string;
+  status: string;
+}
+
 export async function generateProjectPlan(params: {
   projectDescription: string;
   teamMembers: TeamMember[];
   projectContext: ProjectContext;
   additionalContext?: string;
+  existingTasks?: ExistingTask[];
 }): Promise<GeneratedPlan> {
-  const { projectDescription, teamMembers, projectContext, additionalContext } = params;
+  const { projectDescription, teamMembers, projectContext, additionalContext, existingTasks } = params;
 
   try {
     const response = await fetch(`${AI_PLANNER_BASE_URL}/api/ai-planner/generate`, {
@@ -55,6 +63,7 @@ export async function generateProjectPlan(params: {
         teamMembers,
         projectContext,
         additionalContext,
+        existingTasks,
       }),
     });
 
@@ -110,8 +119,9 @@ export async function refineProjectPlan(params: {
   conversationHistory: Array<{ role: string; content: string }>;
   teamMembers: TeamMember[];
   projectContext: ProjectContext;
+  existingTasks?: ExistingTask[];
 }): Promise<GeneratedPlan> {
-  const { currentPlan, refinementPrompt, conversationHistory, teamMembers, projectContext } = params;
+  const { currentPlan, refinementPrompt, conversationHistory, teamMembers, projectContext, existingTasks } = params;
 
   try {
     const response = await fetch(`${AI_PLANNER_BASE_URL}/api/ai-planner/refine`, {
@@ -125,6 +135,7 @@ export async function refineProjectPlan(params: {
         conversationHistory,
         teamMembers,
         projectContext,
+        existingTasks,
       }),
     });
 
@@ -153,6 +164,65 @@ export async function refineProjectPlan(params: {
     console.error("Error refining project plan:", error);
     throw error;
   }
+}
+
+export interface WorkerTask {
+  title: string;
+  estimatedHours: number;
+  priority: string;
+}
+
+export interface Worker {
+  id: string;
+  name: string;
+  role: string;
+  availableHoursPerWeek: number;
+  currentTasks: WorkerTask[];
+}
+
+export interface TaskToAssign {
+  id: string;
+  title: string;
+  description: string;
+  estimatedHours: number;
+  priority: string;
+  tags: string[];
+}
+
+export interface Assignment {
+  taskId: string;
+  workerId: string;
+  workerName: string;
+  reasoning: string;
+}
+
+export interface AssignResult {
+  assignments: Assignment[];
+  reasoning: string;
+}
+
+export async function assignTasks(params: {
+  workers: Worker[];
+  tasksToAssign: TaskToAssign[];
+}): Promise<AssignResult> {
+  const response = await fetch(`${AI_PLANNER_BASE_URL}/api/ai-planner/assign`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(params),
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ error: response.statusText }));
+    throw new Error(`AI Planner service error: ${error.error || response.statusText}`);
+  }
+
+  const data = await response.json();
+
+  if (!data.success || !data.result) {
+    throw new Error("Некорректный ответ от AI Planner service");
+  }
+
+  return data.result as AssignResult;
 }
 
 export type { TeamMember, ProjectContext, GeneratedTask, GeneratedPlan };

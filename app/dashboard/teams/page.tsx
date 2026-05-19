@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
-import { getTeams, getTeamsByLeadId, getUserById } from "@/lib/auth";
+import { getTeams, getUserById } from "@/lib/auth";
 import Link from "next/link";
 import { ROLE_NAMES } from "@/types/roles";
 import { Button } from "@/components/ui/button";
@@ -18,12 +18,11 @@ export default async function TeamsPage() {
   let teams;
   if (role === "admin") {
     teams = await getTeams();
-  } else if (role === "team_lead") {
-    teams = await getTeamsByLeadId(id);
   } else {
-    // Regular users see teams they're part of
     const allTeams = await getTeams();
-    teams = allTeams.filter((team) => team.memberIds.includes(id));
+    teams = allTeams.filter(
+      (team) => team.leadId === id || team.memberIds.includes(id)
+    );
   }
 
   const canCreateTeams = role === "admin" || role === "team_lead";
@@ -132,7 +131,7 @@ export default async function TeamsPage() {
                 return (
                   <div
                     key={team.id}
-                    className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900"
+                    className="flex flex-col rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900"
                   >
                     <div className="mb-4 flex items-start justify-between">
                       <div className="flex-1">
@@ -155,7 +154,7 @@ export default async function TeamsPage() {
                     <div className="space-y-2 text-sm">
                       <div className="flex items-center justify-between">
                         <span className="text-zinc-600 dark:text-zinc-400">
-                          Тимлид:
+                          Руководитель:
                         </span>
                         <span className="font-medium text-foreground">
                           {lead?.name || "Неизвестно"}
@@ -166,12 +165,12 @@ export default async function TeamsPage() {
                           Участников:
                         </span>
                         <span className="font-medium text-foreground">
-                          {team.memberIds.length}
+                          {team.memberIds.length + 1}
                         </span>
                       </div>
                     </div>
 
-                    <div className="mt-4 flex gap-2">
+                    <div className="mt-auto pt-4 flex gap-2">
                       <Button variant="outline" className="flex-1" asChild>
                         <Link href={`/dashboard/teams/${team.id}`}>
                           Просмотр

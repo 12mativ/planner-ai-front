@@ -45,46 +45,6 @@ export default async function Home() {
             </Button>
           </div>
         )}
-
-        {/* Optional Secondary Link */}
-        <Button variant="link" asChild>
-          <a href="#features">
-            Узнать больше о Planner AI
-          </a>
-        </Button>
-
-        {/* Features Section */}
-        <div id="features" className="mt-16 grid gap-8 sm:grid-cols-3">
-          <div className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="mb-3 text-4xl">📝</div>
-            <h3 className="text-lg font-semibold text-foreground">
-              Умное планирование
-            </h3>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-              ИИ помогает организовать задачи эффективно
-            </p>
-          </div>
-
-          <div className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="mb-3 text-4xl">🤖</div>
-            <h3 className="text-lg font-semibold text-foreground">
-              ИИ-ассистент
-            </h3>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-              Персональные рекомендации для продуктивности
-            </p>
-          </div>
-
-          <div className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="mb-3 text-4xl">📊</div>
-            <h3 className="text-lg font-semibold text-foreground">
-              Аналитика
-            </h3>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-              Отслеживайте прогресс и достижения
-            </p>
-          </div>
-        </div>
       </main>
     </div>
   );

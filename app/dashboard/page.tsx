@@ -133,45 +133,6 @@ export default async function DashboardPage() {
               </div>
             </div>
           )}
-
-          {/* Features Section */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800">
-                <span className="text-2xl">📝</span>
-              </div>
-              <h4 className="text-lg font-semibold text-foreground">
-                Планирование задач
-              </h4>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                Создавайте и управляйте своими задачами с помощью ИИ
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800">
-                <span className="text-2xl">🤖</span>
-              </div>
-              <h4 className="text-lg font-semibold text-foreground">
-                ИИ-ассистент
-              </h4>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                Получайте умные рекомендации по планированию
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800">
-                <span className="text-2xl">📊</span>
-              </div>
-              <h4 className="text-lg font-semibold text-foreground">
-                Аналитика
-              </h4>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                Отслеживайте свою продуктивность и прогресс
-              </p>
-            </div>
-          </div>
         </div>
       </main>
     </div>

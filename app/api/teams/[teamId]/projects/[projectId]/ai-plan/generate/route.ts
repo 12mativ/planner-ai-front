@@ -29,6 +29,14 @@ export async function POST(
             },
           },
         },
+        tasks: {
+          select: {
+            title: true,
+            description: true,
+            priority: true,
+            status: true,
+          },
+        },
       },
     });
 
@@ -81,6 +89,13 @@ export async function POST(
       });
     }
 
+    const existingTasks = project.tasks.map((t) => ({
+      title: t.title,
+      description: t.description ?? "",
+      priority: t.priority,
+      status: t.status,
+    }));
+
     // Generate plan using AI
     const generatedPlan = await generateProjectPlan({
       projectDescription: prompt,
@@ -92,6 +107,7 @@ export async function POST(
         teamSize: teamMembers.length,
       },
       additionalContext,
+      existingTasks: existingTasks.length > 0 ? existingTasks : undefined,
     });
 
     // Save the plan to database

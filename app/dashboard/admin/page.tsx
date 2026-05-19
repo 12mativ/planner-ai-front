@@ -118,7 +118,7 @@ export default async function AdminPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                    Тимлидов
+                    Руководителей
                   </p>
                   <p className="mt-2 text-3xl font-bold text-foreground">
                     {teamLeadCount}
@@ -226,7 +226,7 @@ export default async function AdminPage() {
                         {team.name}
                       </h3>
                       <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                        Тимлид: {lead?.name || "Неизвестно"}
+                        Руководитель: {lead?.name || "Неизвестно"}
                       </p>
                       <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
                         Участников: {team.memberIds.length}

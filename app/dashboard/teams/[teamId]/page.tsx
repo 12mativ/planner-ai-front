@@ -104,13 +104,6 @@ export default async function TeamViewPage({ params }: PageProps) {
                 </p>
               )}
             </div>
-            {canManage && (
-              <Button asChild>
-                <Link href={`/dashboard/teams/${team.id}/manage`}>
-                  Управление
-                </Link>
-              </Button>
-            )}
           </div>
         </div>
 
@@ -122,7 +115,7 @@ export default async function TeamViewPage({ params }: PageProps) {
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <div>
               <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                Тимлид:
+                Руководитель:
               </span>
               <div className="mt-1">
                 <p className="text-base font-medium text-foreground">
@@ -158,7 +151,7 @@ export default async function TeamViewPage({ params }: PageProps) {
               <p className="mt-1 text-base text-foreground">
                 {isTeamLead ? (
                   <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                    Тимлид
+                    Руководитель
                   </span>
                 ) : isMember ? (
                   <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -180,6 +173,11 @@ export default async function TeamViewPage({ params }: PageProps) {
             <h2 className="text-xl font-semibold text-foreground">
               Участники команды ({members.length})
             </h2>
+            <Button asChild>
+              <Link href={`/dashboard/teams/${team.id}/manage`}>
+                Управление командой
+              </Link>
+            </Button>
           </div>
 
           {members.length === 0 ? (
@@ -216,7 +214,7 @@ export default async function TeamViewPage({ params }: PageProps) {
                             </p>
                             {isLead && (
                               <span className="inline-block rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                                Тимлид
+                                Руководитель
                               </span>
                             )}
                           </div>
@@ -253,32 +251,6 @@ export default async function TeamViewPage({ params }: PageProps) {
 
           <ProjectsList projects={projects} teamId={teamId} canManage={canManage} />
         </div>
-
-
-        {/* Quick Actions */}
-        {canManage && (
-          <div className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-            <h2 className="text-xl font-semibold text-foreground">
-              Быстрые действия
-            </h2>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link href={`/dashboard/teams/${team.id}/manage`}>
-                  Управление командой
-                </Link>
-              </Button>
-              <Button variant="outline" disabled>
-                Создать задачу
-              </Button>
-              <Button variant="outline" disabled>
-                Просмотр отчетов
-              </Button>
-            </div>
-            <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-500">
-              Некоторые функции будут доступны в будущих обновлениях
-            </p>
-          </div>
-        )}
       </div>
     </div>
   );

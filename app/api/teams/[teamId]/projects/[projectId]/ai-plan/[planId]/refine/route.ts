@@ -30,6 +30,14 @@ export async function PATCH(
             },
           },
         },
+        tasks: {
+          select: {
+            title: true,
+            description: true,
+            priority: true,
+            status: true,
+          },
+        },
       },
     });
 
@@ -103,6 +111,13 @@ export async function PATCH(
       content: msg.content,
     }));
 
+    const existingTasks = project.tasks.map((t) => ({
+      title: t.title,
+      description: t.description ?? "",
+      priority: t.priority,
+      status: t.status,
+    }));
+
     // Refine the plan
     const refinedPlan = await refineProjectPlan({
       currentPlan: existingPlan.generatedPlan as unknown as GeneratedPlan,
@@ -115,6 +130,7 @@ export async function PATCH(
         shortCode: project.shortCode,
         teamSize: teamMembers.length,
       },
+      existingTasks: existingTasks.length > 0 ? existingTasks : undefined,
     });
 
     // Update the plan

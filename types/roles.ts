@@ -60,7 +60,7 @@ export function hasPermission(
 // Role display names in Russian
 export const ROLE_NAMES: Record<UserRole, string> = {
   admin: "Глобальный администратор",
-  team_lead: "Тимлид",
+  team_lead: "Руководитель",
   user: "Пользователь",
 };
 
